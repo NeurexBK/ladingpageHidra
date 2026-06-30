@@ -14,7 +14,7 @@
 <meta property="og:description" content="Rede descentralizada e anônima. Liberdade, privacidade e resistência contra a censura.">
 
 <link rel="icon" type="image/png" href="assets/hidranet-logo.png">
-<link rel="alternate icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+<link rel="alternate icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230a0a0a%22/><text x=%2250%22 y=%2274%22 font-size=%2272%22 font-family=%22Arial,sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%2300ff88%22>H</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -263,9 +263,10 @@
   .pillar:hover .pnum{color:var(--neon)}
   .pillar .picon{
     width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-    font-size:2rem;margin-bottom:22px;background:var(--neon-soft);border:1px solid rgba(0,255,136,.25);
+    color:var(--neon);margin-bottom:22px;background:var(--neon-soft);border:1px solid rgba(0,255,136,.25);
     transition:transform .35s,box-shadow .35s;
   }
+  .pillar .picon svg{width:30px;height:30px}
   .pillar:hover .picon{transform:scale(1.08) rotate(-4deg);box-shadow:0 0 26px rgba(0,255,136,.4)}
   .pillar h3{font-size:1.3rem;font-weight:700;margin-bottom:12px;letter-spacing:-.01em}
   .pillar p{color:var(--muted);font-size:1rem}
@@ -398,7 +399,6 @@
   <div class="wrap nav">
     <a href="#top" class="logo" aria-label="HidraNet — início">
       <img src="assets/hidranet-logo.png" alt="" class="logo-mark" onerror="this.classList.add('hide')">
-      <span class="snake" aria-hidden="true">🐍</span>
       <span>Hidra<span class="net">Net</span></span>
     </a>
 
@@ -422,14 +422,13 @@
     <div class="wrap">
       <img src="assets/hidranet-logo.png" alt="Logo HidraNet" class="hero-logo" onerror="this.style.display='none'">
 
-      <span class="badge"><span class="dot" aria-hidden="true"></span>🚀 LANÇAMENTO OFICIAL · 2026</span>
 
       <h1><span class="glitch" data-text="A Internet que Ninguém Pode Desligar">A Internet que Ninguém Pode Desligar</span></h1>
 
       <p class="sub">Navegue, converse, publique e compartilhe sem censura, sem vigilância, sem dono. Cada computador é um nó. A rede é a própria liberdade.</p>
 
       <div class="hero-actions">
-        <a href="#download" class="btn btn-primary"><span class="sweep" aria-hidden="true"></span>⬇ Baixar HidraBrowser</a>
+        <a href="#download" class="btn btn-primary"><span class="sweep" aria-hidden="true"></span>Baixar HidraBrowser</a>
         <a href="#pilares" class="btn btn-ghost">Conheça os Pilares →</a>
       </div>
 
@@ -454,42 +453,42 @@
       <div class="grid-pillars">
         <article class="pillar reveal">
           <span class="pnum">01</span>
-          <div class="picon" aria-hidden="true">🔐</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3>Criptografia Blindada</h3>
           <p>Noise Protocol + Kyber (Pós-Quântica). Resistente até a ataques de computadores quânticos.</p>
         </article>
 
         <article class="pillar reveal">
           <span class="pnum">02</span>
-          <div class="picon" aria-hidden="true">🧅</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
           <h3>Roteamento Cebola</h3>
           <p>3 a 7 saltos com chaffing. Seu IP nunca é exposto.</p>
         </article>
 
         <article class="pillar reveal">
           <span class="pnum">03</span>
-          <div class="picon" aria-hidden="true">🌐</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
           <h3>DHT Kademlia</h3>
           <p>100% descentralizada. Sem servidores centrais, sem ponto único de falha.</p>
         </article>
 
         <article class="pillar reveal">
           <span class="pnum">04</span>
-          <div class="picon" aria-hidden="true">🛡️</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
           <h3>Ofuscação</h3>
           <p>Tráfego indistinguível de HTTPS. Nenhum firewall te bloqueia.</p>
         </article>
 
         <article class="pillar reveal">
           <span class="pnum">05</span>
-          <div class="picon" aria-hidden="true">🏛️</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
           <h3>Serviços Ocultos</h3>
           <p>Publique sites <span style="color:var(--neon);font-family:var(--mono)">.hidra</span> sem revelar IP ou identidade.</p>
         </article>
 
         <article class="pillar reveal">
           <span class="pnum">06</span>
-          <div class="picon" aria-hidden="true">📱</div>
+          <div class="picon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
           <h3>Aplicações Nativas</h3>
           <p>Chat, e-mail, fórum e criador de sites — tudo anônimo e integrado.</p>
         </article>
@@ -514,7 +513,7 @@
           <h3>Windows</h3>
           <p class="dl-desc">PC desktop / laptop</p>
           <div class="meta">v1.0.0 · x64 · 117 MB</div>
-          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip" download="HidraNet-Browser-1.0.0-Windows-x64.zip" data-download="Windows">⬇ Baixar</a>
+          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip" download="HidraNet-Browser-1.0.0-Windows-x64.zip" data-download="Windows">Baixar</a>
         </article>
 
         <article class="dl reveal">
@@ -524,7 +523,7 @@
           <h3>macOS · Apple Silicon</h3>
           <p class="dl-desc">MacBook M1/M2/M3/M4 (pós-2020)</p>
           <div class="meta">v1.0.0 · arm64 · 95 MB</div>
-          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip" download="HidraNet-Browser-1.0.0-macOS-arm64.zip" data-download="macOS (Apple Silicon)">⬇ Baixar</a>
+          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip" download="HidraNet-Browser-1.0.0-macOS-arm64.zip" data-download="macOS (Apple Silicon)">Baixar</a>
         </article>
 
         <article class="dl reveal">
@@ -534,7 +533,7 @@
           <h3>macOS · Intel</h3>
           <p class="dl-desc">MacBook Intel (anterior a 2020)</p>
           <div class="meta">v1.0.0 · x64 · 100 MB</div>
-          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip" download="HidraNet-Browser-1.0.0-macOS-x64.zip" data-download="macOS (Intel)">⬇ Baixar</a>
+          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip" download="HidraNet-Browser-1.0.0-macOS-x64.zip" data-download="macOS (Intel)">Baixar</a>
         </article>
 
         <article class="dl reveal">
@@ -544,11 +543,11 @@
           <h3>Linux</h3>
           <p class="dl-desc">Desktop / laptop (x64)</p>
           <div class="meta">v1.0.0 · x64 · 101 MB</div>
-          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip" download="HidraNet-Browser-1.0.0-Linux-x64.zip" data-download="Linux">⬇ Baixar</a>
+          <a class="dlbtn" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip" download="HidraNet-Browser-1.0.0-Linux-x64.zip" data-download="Linux">Baixar</a>
         </article>
       </div>
 
-      <p class="dl-note reveal">🔒 <b>Todos os arquivos são assinados criptograficamente. Verifique as hashes SHA-256 antes de executar.</b></p>
+      <p class="dl-note reveal"><b>Todos os arquivos são assinados criptograficamente. Verifique as hashes SHA-256 antes de executar.</b></p>
     </div>
   </section>
 
@@ -557,7 +556,7 @@
     <div class="wrap">
       <div class="head reveal">
         <span class="kicker">// Princípios</span>
-        <h2>📜 Manifesto HidraNet</h2>
+        <h2>Manifesto HidraNet</h2>
       </div>
 
       <blockquote class="quote reveal">
@@ -574,7 +573,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="brand"><img src="assets/hidranet-logo.png" alt="" class="foot-mark" onerror="this.classList.add('hide')"><span class="foot-snake" aria-hidden="true">🐍</span> Hidra<span class="net">Net</span></div>
+        <div class="brand"><img src="assets/hidranet-logo.png" alt="" class="foot-mark" onerror="this.classList.add('hide')"> Hidra<span class="net">Net</span></div>
         <div class="copy">© 2026 — Liberdade Digital</div>
       </div>
       <nav class="foot-links">
@@ -647,7 +646,7 @@
   function showToast(os){
     var t = document.createElement('div');
     t.className = 'toast';
-    t.innerHTML = '<div class="tt">⬇ Iniciando download</div>' +
+    t.innerHTML = '<div class="tt">Iniciando download</div>' +
                   '<div class="tm">HidraBrowser para <b style="color:#fff">' + os + '</b> está sendo baixado. Lembre-se de verificar a hash SHA-256.</div>' +
                   '<div class="bar"><i></i></div>';
     toasts.appendChild(t);
