@@ -260,6 +260,10 @@
   .pay-link{display:inline-block;margin-top:12px;font-size:.9rem;color:var(--cyan)}
   .pay-foot{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--dim)}
   .pay-foot code{color:var(--muted)}
+  .pay-qr{width:196px;height:196px;margin:4px auto 10px;background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center}
+  .pay-qr svg{width:100%;height:100%;display:block}
+  .pay-scan{font-size:.84rem;color:var(--dim);margin-bottom:16px}
+  .pay-ext{width:100%;margin-top:10px;font-size:.92rem;padding:11px 22px}
 
   /* ===== Responsive ===== */
   @media (max-width:980px){
@@ -477,7 +481,7 @@
       <div class="s-head reveal">
         <div class="s-kick">// Obter acesso</div>
         <h2>Baixe o HidraBrowser</h2>
-        <p>Pague <b style="color:var(--white)">US$1 em SOL</b> (direto na sua carteira, rede Solana) pela Phantom e o download começa na hora. Escolha o seu sistema:</p>
+        <p>Pague <b style="color:var(--white)">US$1 em SOL</b> com <b style="color:var(--white)">qualquer carteira Solana</b> (via Solana Pay) e o download começa na hora. Escolha o seu sistema:</p>
       </div>
       <div class="grid-dl">
         <article class="dl reveal">
@@ -523,7 +527,7 @@
       </div>
       <p class="dl-note reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Pagamento em SOL via carteira Phantom · Arquivos assinados — verifique as hashes SHA-256 antes de executar.
+        Pagamento em SOL via Solana Pay (qualquer carteira) · Arquivos assinados — verifique as hashes SHA-256 antes de executar.
       </p>
     </div>
   </section>
@@ -605,14 +609,17 @@
     <button class="pay-x" id="payClose" type="button" aria-label="Fechar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <span class="pay-badge">Pagamento · Rede Solana</span>
+    <span class="pay-badge">Pagamento · Solana Pay</span>
     <h3 id="payTitle">Baixar HidraBrowser</h3>
-    <p class="pay-desc">Pague <b>US$1 em SOL</b> pela Phantom para <span id="payOs">Windows</span>. O download começa automaticamente ao confirmar a transação.</p>
-    <div class="pay-amount"><span id="paySol">—</span> <span class="pay-unit">SOL</span><span class="pay-approx">≈ US$1 · direto na carteira do projeto</span></div>
-    <button class="btn btn-primary pay-go" id="payGo" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-      Conectar Phantom e pagar
-    </button>
+    <p class="pay-desc">Pague <b>US$1 em SOL</b> com <b>qualquer carteira Solana</b> (Phantom, Solflare, Backpack, Trust…) para <span id="payOs">Windows</span>.</p>
+    <div class="pay-amount"><span id="paySol">—</span> <span class="pay-unit">SOL</span><span class="pay-approx">≈ US$1 · direto na sua carteira</span></div>
+    <div class="pay-qr" id="payQr" aria-label="QR de pagamento Solana Pay"></div>
+    <div class="pay-scan">Escaneie com o app da sua carteira Solana</div>
+    <a class="btn btn-primary pay-go" id="payOpen" href="#" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      Abrir na carteira
+    </a>
+    <button class="btn btn-ghost pay-ext" id="payExt" type="button">Pagar com a extensão do navegador</button>
     <div class="pay-status" id="payStatus" hidden></div>
     <a class="pay-link" id="payTx" href="#" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
     <div class="pay-foot">Recebedor: <code>9Uz7…79sZ</code> · Solana</div>
@@ -688,86 +695,101 @@
   var track=document.getElementById('track');
   if(track){track.innerHTML+=track.innerHTML;}
 
-  /* ===== Pagamento em SOL via Phantom ===== */
+  /* ===== Pagamento em SOL via Solana Pay (qualquer carteira) ===== */
   var MERCHANT='9Uz7VyeBFmEU8sKnCwFsGC8AczjmLqnxZjQG7Vsm79sZ';
   var RPC='https://solana-rpc.publicnode.com';
   var payModal=document.getElementById('payModal');
   var payOsEl=document.getElementById('payOs');
   var paySolEl=document.getElementById('paySol');
   var payStatusEl=document.getElementById('payStatus');
-  var payGoBtn=document.getElementById('payGo');
+  var payQrEl=document.getElementById('payQr');
+  var payOpenEl=document.getElementById('payOpen');
+  var payExtEl=document.getElementById('payExt');
   var payTxEl=document.getElementById('payTx');
-  var payFile=null, paySol=null, paying=false;
-  var PAY_BTN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Conectar Phantom e pagar';
+  var payFile=null, payOsName='', paySol=null, payLamports=0, payRef=null, payPoll=null, payDone=false;
   function pStatus(msg,type){ if(!payStatusEl) return; payStatusEl.hidden=!msg; payStatusEl.textContent=msg||''; payStatusEl.className='pay-status'+(type?(' '+type):''); }
+  function loadScript(src,check){ return new Promise(function(res,rej){ if(check()) return res(); var s=document.createElement('script'); s.src=src; s.onload=function(){res();}; s.onerror=function(){rej(new Error('Falha ao carregar '+src));}; document.head.appendChild(s); }); }
+  function loadLibs(){ return loadScript('assets/solana-web3.min.js',function(){return !!window.solanaWeb3;}).then(function(){ return loadScript('assets/qrcode.min.js',function(){return !!window.qrcode;}); }); }
   function fetchPrice(){ return fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd').then(function(r){return r.json();}).then(function(j){ var p=j&&j.solana&&j.solana.usd; if(!p) throw new Error('sem preço'); return 1/p; }); }
+  function stopPoll(){ if(payPoll){ clearInterval(payPoll); payPoll=null; } }
+  function conn(){ return new solanaWeb3.Connection(RPC,'confirmed'); }
+  function payURL(amtStr){ return 'solana:'+MERCHANT+'?amount='+amtStr+'&reference='+payRef+'&label='+encodeURIComponent('HidraNet')+'&message='+encodeURIComponent('HidraBrowser - '+payOsName); }
+  function renderQR(url){ try{ var qr=window.qrcode(0,'M'); qr.addData(url); qr.make(); payQrEl.innerHTML=qr.createSvgTag({cellSize:5,margin:2,scalable:true}); }catch(e){ payQrEl.textContent='QR indisponível'; } }
+  function unlock(sig){ if(payDone) return; payDone=true; stopPoll(); if(sig){ payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false; } pStatus('Pagamento confirmado. Iniciando o download…','ok'); var a=document.createElement('a'); a.href=payFile; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  function startPolling(){
+    var c=conn(), tries=0, ref=new solanaWeb3.PublicKey(payRef);
+    payPoll=setInterval(function(){
+      if(payDone){ stopPoll(); return; }
+      if(++tries>220){ stopPoll(); return; }
+      c.getSignaturesForAddress(ref,{limit:10}).then(function(list){
+        if(payDone||!list||!list.length) return;
+        var sig=null; for(var i=list.length-1;i>=0;i--){ if(!list[i].err){ sig=list[i].signature; break; } }
+        if(sig) unlock(sig);
+      }).catch(function(){});
+    },4000);
+  }
   function openPay(os,file){
-    payFile=file; paying=false; paySol=null;
-    payOsEl.textContent=os; paySolEl.textContent='—';
-    pStatus(''); payTxEl.hidden=true; payGoBtn.disabled=false; payGoBtn.innerHTML=PAY_BTN;
+    payFile=file; payOsName=os; payDone=false; paySol=null; payRef=null; stopPoll();
+    payOsEl.textContent=os; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true;
+    pStatus('Gerando cobrança…'); if(payOpenEl) payOpenEl.removeAttribute('href');
     payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
-    fetchPrice().then(function(s){ paySol=s; paySolEl.textContent=s.toFixed(4); }).catch(function(){ paySolEl.textContent='~'; });
+    loadLibs().then(function(){ payRef=solanaWeb3.Keypair.generate().publicKey.toBase58(); return fetchPrice(); }).then(function(sol){
+      paySol=sol;
+      var amtStr=sol.toFixed(6).replace(/0+$/,'').replace(/\.$/,'');
+      payLamports=Math.round(parseFloat(amtStr)*solanaWeb3.LAMPORTS_PER_SOL);
+      paySolEl.textContent=parseFloat(amtStr).toFixed(4);
+      var url=payURL(amtStr);
+      if(payOpenEl) payOpenEl.href=url;
+      renderQR(url);
+      pStatus('Escaneie o QR ou toque em "Abrir na carteira". Aguardando o pagamento…');
+      startPolling();
+    }).catch(function(e){ pStatus('Erro: '+((e&&e.message)?e.message:e),'err'); });
   }
-  function closePay(){ if(paying) return; payModal.classList.remove('open'); payModal.setAttribute('aria-hidden','true'); }
-  function loadWeb3(){ return new Promise(function(res,rej){ if(window.solanaWeb3) return res(); var s=document.createElement('script'); s.src='assets/solana-web3.min.js'; s.onload=function(){res();}; s.onerror=function(){rej(new Error('Falha ao carregar a biblioteca Solana.'));}; document.head.appendChild(s); }); }
-  function getPhantom(){ var p=(window.phantom&&window.phantom.solana)||window.solana; return (p&&p.isPhantom)?p:null; }
-  function confirmSig(conn,sig){
-    return new Promise(function(resolve,reject){
-      var n=0;
-      (function poll(){
-        conn.getSignatureStatuses([sig]).then(function(st){
-          var s=st&&st.value&&st.value[0];
-          if(s){ if(s.err) return reject(new Error('A transação falhou na rede.')); if(s.confirmationStatus==='confirmed'||s.confirmationStatus==='finalized') return resolve(); }
-          if(++n>40) return reject(new Error('Tempo esgotado aguardando a confirmação.'));
-          setTimeout(poll,2000);
-        }).catch(function(){ if(++n>40) return reject(new Error('Falha ao consultar a rede.')); setTimeout(poll,2000); });
-      })();
-    });
+  function closePay(){ stopPoll(); payModal.classList.remove('open'); payModal.setAttribute('aria-hidden','true'); }
+  function getInjected(){
+    if(window.phantom&&window.phantom.solana&&window.phantom.solana.isPhantom) return window.phantom.solana;
+    if(window.solflare&&window.solflare.isSolflare) return window.solflare;
+    if(window.backpack&&window.backpack.isBackpack) return window.backpack;
+    if(window.solana&&window.solana.connect) return window.solana;
+    return null;
   }
-  function triggerDownload(url){ var a=document.createElement('a'); a.href=url; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }
-  if(payModal && payGoBtn){
-    payGoBtn.addEventListener('click',function(){
-      if(paying) return;
-      paying=true; payGoBtn.disabled=true; pStatus('Carregando…');
-      loadWeb3().then(function(){
-        var provider=getPhantom();
-        if(!provider){ pStatus('Phantom não encontrada. Instale em phantom.app (ou abra pelo navegador da Phantom no celular).','err'); paying=false; payGoBtn.disabled=false; return; }
-        pStatus('Conecte sua carteira na Phantom…');
-        return provider.connect().then(function(resp){
-          var pk=(resp&&resp.publicKey)?resp.publicKey:provider.publicKey;
-          var from=new solanaWeb3.PublicKey(pk.toString());
-          pStatus('Calculando o valor em SOL…');
-          return (paySol?Promise.resolve(paySol):fetchPrice()).then(function(sol){
-            paySol=sol; paySolEl.textContent=sol.toFixed(4);
-            var lamports=Math.round(sol*solanaWeb3.LAMPORTS_PER_SOL);
-            var conn=new solanaWeb3.Connection(RPC,'confirmed');
-            pStatus('Preparando a transação…');
-            return conn.getLatestBlockhash().then(function(bh){
-              var tx=new solanaWeb3.Transaction({feePayer:from,recentBlockhash:bh.blockhash});
-              tx.add(solanaWeb3.SystemProgram.transfer({fromPubkey:from,toPubkey:new solanaWeb3.PublicKey(MERCHANT),lamports:lamports}));
-              pStatus('Confirme o pagamento na Phantom…');
-              return provider.signAndSendTransaction(tx).then(function(sent){
-                var sig=(sent&&sent.signature)?sent.signature:sent;
-                payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false;
-                pStatus('Confirmando na rede Solana…');
-                return confirmSig(conn,sig).then(function(){
-                  pStatus('Pagamento confirmado. Iniciando o download…','ok');
-                  triggerDownload(payFile);
-                  payGoBtn.innerHTML='Download iniciado'; payGoBtn.disabled=true; paying=false;
-                });
-              });
-            });
-          });
+  function payWithExtension(){
+    if(!paySol||!window.solanaWeb3){ pStatus('Aguarde a cobrança carregar…','err'); return; }
+    var prov=getInjected();
+    if(!prov||!prov.connect){ pStatus('Nenhuma extensão de carteira encontrada. Use o QR acima com o app do celular.','err'); return; }
+    pStatus('Conecte sua carteira…');
+    prov.connect().then(function(resp){
+      var pk=(resp&&resp.publicKey)?resp.publicKey:prov.publicKey;
+      var from=new solanaWeb3.PublicKey(pk.toString());
+      var c=conn();
+      return c.getLatestBlockhash().then(function(bh){
+        var tx=new solanaWeb3.Transaction({feePayer:from,recentBlockhash:bh.blockhash});
+        var ix=solanaWeb3.SystemProgram.transfer({fromPubkey:from,toPubkey:new solanaWeb3.PublicKey(MERCHANT),lamports:payLamports});
+        ix.keys.push({pubkey:new solanaWeb3.PublicKey(payRef),isSigner:false,isWritable:false});
+        tx.add(ix);
+        pStatus('Confirme o pagamento na carteira…');
+        return prov.signAndSendTransaction(tx).then(function(sent){
+          var sig=(sent&&sent.signature)?sent.signature:sent;
+          payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false;
+          pStatus('Confirmando na rede…');
+          var n=0, iv=setInterval(function(){
+            if(payDone){ clearInterval(iv); return; }
+            c.getSignatureStatuses([sig]).then(function(st){
+              var s=st&&st.value&&st.value[0];
+              if(s&&s.err){ clearInterval(iv); pStatus('A transação falhou na rede.','err'); }
+              else if(s&&(s.confirmationStatus==='confirmed'||s.confirmationStatus==='finalized')){ clearInterval(iv); unlock(sig); }
+              else if(++n>45){ clearInterval(iv); pStatus('Tempo esgotado — confira no Solscan.','err'); }
+            }).catch(function(){ if(++n>45){ clearInterval(iv); } });
+          },2000);
         });
-      }).catch(function(e){
-        var m=(e&&e.message)?e.message:String(e);
-        if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.';
-        pStatus('Erro: '+m,'err'); paying=false; payGoBtn.disabled=false;
       });
-    });
+    }).catch(function(e){ var m=(e&&e.message)?e.message:String(e); if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.'; pStatus('Erro: '+m,'err'); });
+  }
+  if(payModal){
     document.getElementById('payClose').addEventListener('click',closePay);
     payModal.addEventListener('click',function(e){ if(e.target===payModal) closePay(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePay(); });
+    if(payExtEl) payExtEl.addEventListener('click',payWithExtension);
     document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
   }
 
