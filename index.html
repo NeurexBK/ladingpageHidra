@@ -239,6 +239,28 @@
   .toast .tt svg{width:16px;height:16px}
   .toast .tm{color:var(--muted);font-size:.85rem;line-height:1.5}
 
+  /* ===== Pay modal ===== */
+  .pay-overlay{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,4,5,.8);backdrop-filter:blur(6px)}
+  .pay-overlay.open{display:flex}
+  .pay-card{position:relative;width:100%;max-width:420px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--radius);padding:34px 30px;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+  .pay-x{position:absolute;top:15px;right:15px;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .pay-x:hover{color:var(--white);border-color:var(--line-2)}
+  .pay-x svg{width:16px;height:16px}
+  .pay-badge{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:var(--neon-soft);border:1px solid rgba(0,255,136,.3);padding:5px 13px;border-radius:999px;margin-bottom:18px}
+  .pay-card h3{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+  .pay-desc{color:var(--muted);font-size:.98rem;margin-bottom:22px}
+  .pay-desc b{color:var(--white)}
+  .pay-amount{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--neon);line-height:1;margin-bottom:22px}
+  .pay-amount .pay-unit{font-size:1.1rem}
+  .pay-amount .pay-approx{display:block;font-family:var(--font);font-size:.82rem;font-weight:400;color:var(--dim);margin-top:8px}
+  .pay-go{width:100%}
+  .pay-status{margin-top:16px;font-size:.92rem;color:var(--muted);min-height:1.2em}
+  .pay-status.err{color:#ff6b6b}
+  .pay-status.ok{color:var(--neon)}
+  .pay-link{display:inline-block;margin-top:12px;font-size:.9rem;color:var(--cyan)}
+  .pay-foot{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+  .pay-foot code{color:var(--muted)}
+
   /* ===== Responsive ===== */
   @media (max-width:980px){
     .grid-p{grid-template-columns:repeat(2,1fr)}
@@ -291,7 +313,6 @@
       <a href="#manifesto">Manifesto</a>
     </nav>
     <div class="nav-cta">
-      <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub</a>
       <a href="#download" class="btn btn-primary">Baixar</a>
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -456,7 +477,7 @@
       <div class="s-head reveal">
         <div class="s-kick">// Obter acesso</div>
         <h2>Baixe o HidraBrowser</h2>
-        <p>Disponível para todos os sistemas. Escolha o seu e comece a navegar com liberdade.</p>
+        <p>Pague <b style="color:var(--white)">US$1 em SOL</b> (direto na sua carteira, rede Solana) pela Phantom e o download começa na hora. Escolha o seu sistema:</p>
       </div>
       <div class="grid-dl">
         <article class="dl reveal">
@@ -464,45 +485,45 @@
           <h3>Windows</h3>
           <div class="desc">PC desktop / laptop</div>
           <div class="meta">v1.0.0 · x64 · 117 MB</div>
-          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip" download="HidraNet-Browser-1.0.0-Windows-x64.zip" data-download="Windows">
+          <button class="b" type="button" data-pay="Windows" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Baixar
-          </a>
+            Pagar $1 · Baixar
+          </button>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94s-2.07-.92-3.4-.89c-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.4.86 1.25 1.88 2.66 3.22 2.61 1.29-.05 1.78-.83 3.34-.83s2 .83 3.37.81c1.39-.03 2.27-1.28 3.12-2.54.98-1.46 1.39-2.87 1.41-2.94-.03-.01-2.71-1.04-2.74-4.13zM14.69 4.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44z"/></svg></div>
           <h3>macOS · Apple Silicon</h3>
           <div class="desc">MacBook M1/M2/M3/M4 (pós-2020)</div>
           <div class="meta">v1.0.0 · arm64 · 95 MB</div>
-          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip" download="HidraNet-Browser-1.0.0-macOS-arm64.zip" data-download="macOS (Apple Silicon)">
+          <button class="b" type="button" data-pay="macOS (Apple Silicon)" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Baixar
-          </a>
+            Pagar $1 · Baixar
+          </button>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94s-2.07-.92-3.4-.89c-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.4.86 1.25 1.88 2.66 3.22 2.61 1.29-.05 1.78-.83 3.34-.83s2 .83 3.37.81c1.39-.03 2.27-1.28 3.12-2.54.98-1.46 1.39-2.87 1.41-2.94-.03-.01-2.71-1.04-2.74-4.13zM14.69 4.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44z"/></svg></div>
           <h3>macOS · Intel</h3>
           <div class="desc">MacBook Intel (anterior a 2020)</div>
           <div class="meta">v1.0.0 · x64 · 100 MB</div>
-          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip" download="HidraNet-Browser-1.0.0-macOS-x64.zip" data-download="macOS (Intel)">
+          <button class="b" type="button" data-pay="macOS (Intel)" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Baixar
-          </a>
+            Pagar $1 · Baixar
+          </button>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-1.7 0-2.6 1.5-2.6 3.4 0 .9.2 1.7.2 2.4-.6.7-1.5 1.9-2.3 3.6-.8 1.6-1.7 2.7-2.4 3.9-.4.7-.2 1.5.3 1.8.2.6.1 1.3.5 1.7.5.5 1.3.3 1.9.5.5.5 1.2 1 2 1.1.3.3.9.5 1.4.5s1.1-.2 1.4-.5c.8-.1 1.5-.6 2-1.1.6-.2 1.4 0 1.9-.5.4-.4.3-1.1.5-1.7.5-.3.7-1.1.3-1.8-.7-1.2-1.6-2.3-2.4-3.9-.8-1.7-1.7-2.9-2.3-3.6 0-.7.2-1.5.2-2.4C14.6 3.5 13.7 2 12 2m-1.4 4.1c.3 0 .6.4.6.9s-.3.9-.6.9-.6-.4-.6-.9.3-.9.6-.9m2.8 0c.3 0 .6.4.6.9s-.3.9-.6.9-.6-.4-.6-.9.3-.9.6-.9M12 9.2c.8 0 1.9.7 1.9 1.1 0 .3-.5.5-1 .7v.7c0 .4-.5.6-.9.6s-.9-.2-.9-.6v-.7c-.5-.2-1-.4-1-.7 0-.4 1.1-1.1 1.9-1.1"/></svg></div>
           <h3>Linux</h3>
           <div class="desc">Desktop / laptop (x64)</div>
           <div class="meta">v1.0.0 · x64 · 101 MB</div>
-          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip" download="HidraNet-Browser-1.0.0-Linux-x64.zip" data-download="Linux">
+          <button class="b" type="button" data-pay="Linux" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Baixar
-          </a>
+            Pagar $1 · Baixar
+          </button>
         </article>
       </div>
       <p class="dl-note reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Todos os arquivos são assinados criptograficamente. Verifique as hashes SHA-256 antes de executar.
+        Pagamento em SOL via carteira Phantom · Arquivos assinados — verifique as hashes SHA-256 antes de executar.
       </p>
     </div>
   </section>
@@ -529,7 +550,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Baixar HidraBrowser
           </a>
-          <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg">Ver no GitHub</a>
+          <a href="#pilares" class="btn btn-ghost btn-lg">Conheça os pilares</a>
         </div>
       </div>
     </div>
@@ -556,10 +577,10 @@
         <a href="#download">Download</a>
       </div>
       <div class="foot-col">
-        <h5>Recursos</h5>
-        <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://github.com/NeurexBK/HidraNet/releases" target="_blank" rel="noopener noreferrer">Releases</a>
+        <h5>Comunidade</h5>
+        <a href="https://x.com/HidraNetoff" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
         <a href="#manifesto">Manifesto</a>
+        <a href="#download">Baixar</a>
       </div>
       <div class="foot-col">
         <h5>Rede</h5>
@@ -571,9 +592,6 @@
     <div class="foot-bottom">
       <div class="cp">© 2026 HidraNet — Liberdade Digital</div>
       <div class="socials">
-        <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-        </a>
         <a href="https://x.com/HidraNetoff" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
@@ -581,6 +599,25 @@
     </div>
   </div>
 </footer>
+
+<div id="payModal" class="pay-overlay" aria-hidden="true">
+  <div class="pay-card" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+    <button class="pay-x" id="payClose" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <span class="pay-badge">Pagamento · Rede Solana</span>
+    <h3 id="payTitle">Baixar HidraBrowser</h3>
+    <p class="pay-desc">Pague <b>US$1 em SOL</b> pela Phantom para <span id="payOs">Windows</span>. O download começa automaticamente ao confirmar a transação.</p>
+    <div class="pay-amount"><span id="paySol">—</span> <span class="pay-unit">SOL</span><span class="pay-approx">≈ US$1 · direto na carteira do projeto</span></div>
+    <button class="btn btn-primary pay-go" id="payGo" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      Conectar Phantom e pagar
+    </button>
+    <div class="pay-status" id="payStatus" hidden></div>
+    <a class="pay-link" id="payTx" href="#" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
+    <div class="pay-foot">Recebedor: <code>9Uz7…79sZ</code> · Solana</div>
+  </div>
+</div>
 
 <div id="toasts" aria-live="polite"></div>
 
@@ -651,19 +688,88 @@
   var track=document.getElementById('track');
   if(track){track.innerHTML+=track.innerHTML;}
 
-  /* Toasts on download */
-  var toasts=document.getElementById('toasts');
-  function toast(os){
-    var t=document.createElement('div'); t.className='toast';
-    t.innerHTML='<div class="tt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Iniciando download</div><div class="tm">HidraBrowser para <b style="color:#fff">'+os+'</b> está sendo baixado. Verifique a hash SHA-256.</div>';
-    toasts.appendChild(t);
-    requestAnimationFrame(function(){t.classList.add('show');});
-    var k=function(){t.classList.remove('show');setTimeout(function(){t.remove();},420);};
-    var tm=setTimeout(k,4200); t.addEventListener('click',function(){clearTimeout(tm);k();});
+  /* ===== Pagamento em SOL via Phantom ===== */
+  var MERCHANT='9Uz7VyeBFmEU8sKnCwFsGC8AczjmLqnxZjQG7Vsm79sZ';
+  var RPC='https://api.mainnet-beta.solana.com';
+  var payModal=document.getElementById('payModal');
+  var payOsEl=document.getElementById('payOs');
+  var paySolEl=document.getElementById('paySol');
+  var payStatusEl=document.getElementById('payStatus');
+  var payGoBtn=document.getElementById('payGo');
+  var payTxEl=document.getElementById('payTx');
+  var payFile=null, paySol=null, paying=false;
+  var PAY_BTN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Conectar Phantom e pagar';
+  function pStatus(msg,type){ if(!payStatusEl) return; payStatusEl.hidden=!msg; payStatusEl.textContent=msg||''; payStatusEl.className='pay-status'+(type?(' '+type):''); }
+  function fetchPrice(){ return fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd').then(function(r){return r.json();}).then(function(j){ var p=j&&j.solana&&j.solana.usd; if(!p) throw new Error('sem preço'); return 1/p; }); }
+  function openPay(os,file){
+    payFile=file; paying=false; paySol=null;
+    payOsEl.textContent=os; paySolEl.textContent='—';
+    pStatus(''); payTxEl.hidden=true; payGoBtn.disabled=false; payGoBtn.innerHTML=PAY_BTN;
+    payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
+    fetchPrice().then(function(s){ paySol=s; paySolEl.textContent=s.toFixed(4); }).catch(function(){ paySolEl.textContent='~'; });
   }
-  document.querySelectorAll('[data-download]').forEach(function(b){
-    b.addEventListener('click',function(){toast(b.getAttribute('data-download'));});
-  });
+  function closePay(){ if(paying) return; payModal.classList.remove('open'); payModal.setAttribute('aria-hidden','true'); }
+  function loadWeb3(){ return new Promise(function(res,rej){ if(window.solanaWeb3) return res(); var s=document.createElement('script'); s.src='assets/solana-web3.min.js'; s.onload=function(){res();}; s.onerror=function(){rej(new Error('Falha ao carregar a biblioteca Solana.'));}; document.head.appendChild(s); }); }
+  function getPhantom(){ var p=(window.phantom&&window.phantom.solana)||window.solana; return (p&&p.isPhantom)?p:null; }
+  function confirmSig(conn,sig){
+    return new Promise(function(resolve,reject){
+      var n=0;
+      (function poll(){
+        conn.getSignatureStatuses([sig]).then(function(st){
+          var s=st&&st.value&&st.value[0];
+          if(s){ if(s.err) return reject(new Error('A transação falhou na rede.')); if(s.confirmationStatus==='confirmed'||s.confirmationStatus==='finalized') return resolve(); }
+          if(++n>40) return reject(new Error('Tempo esgotado aguardando a confirmação.'));
+          setTimeout(poll,2000);
+        }).catch(function(){ if(++n>40) return reject(new Error('Falha ao consultar a rede.')); setTimeout(poll,2000); });
+      })();
+    });
+  }
+  function triggerDownload(url){ var a=document.createElement('a'); a.href=url; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  if(payModal && payGoBtn){
+    payGoBtn.addEventListener('click',function(){
+      if(paying) return;
+      paying=true; payGoBtn.disabled=true; pStatus('Carregando…');
+      loadWeb3().then(function(){
+        var provider=getPhantom();
+        if(!provider){ pStatus('Phantom não encontrada. Instale em phantom.app (ou abra pelo navegador da Phantom no celular).','err'); paying=false; payGoBtn.disabled=false; return; }
+        pStatus('Conecte sua carteira na Phantom…');
+        return provider.connect().then(function(resp){
+          var pk=(resp&&resp.publicKey)?resp.publicKey:provider.publicKey;
+          var from=new solanaWeb3.PublicKey(pk.toString());
+          pStatus('Calculando o valor em SOL…');
+          return (paySol?Promise.resolve(paySol):fetchPrice()).then(function(sol){
+            paySol=sol; paySolEl.textContent=sol.toFixed(4);
+            var lamports=Math.round(sol*solanaWeb3.LAMPORTS_PER_SOL);
+            var conn=new solanaWeb3.Connection(RPC,'confirmed');
+            pStatus('Preparando a transação…');
+            return conn.getLatestBlockhash().then(function(bh){
+              var tx=new solanaWeb3.Transaction({feePayer:from,recentBlockhash:bh.blockhash});
+              tx.add(solanaWeb3.SystemProgram.transfer({fromPubkey:from,toPubkey:new solanaWeb3.PublicKey(MERCHANT),lamports:lamports}));
+              pStatus('Confirme o pagamento na Phantom…');
+              return provider.signAndSendTransaction(tx).then(function(sent){
+                var sig=(sent&&sent.signature)?sent.signature:sent;
+                payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false;
+                pStatus('Confirmando na rede Solana…');
+                return confirmSig(conn,sig).then(function(){
+                  pStatus('Pagamento confirmado. Iniciando o download…','ok');
+                  triggerDownload(payFile);
+                  payGoBtn.innerHTML='Download iniciado'; payGoBtn.disabled=true; paying=false;
+                });
+              });
+            });
+          });
+        });
+      }).catch(function(e){
+        var m=(e&&e.message)?e.message:String(e);
+        if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.';
+        pStatus('Erro: '+m,'err'); paying=false; payGoBtn.disabled=false;
+      });
+    });
+    document.getElementById('payClose').addEventListener('click',closePay);
+    payModal.addEventListener('click',function(e){ if(e.target===payModal) closePay(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePay(); });
+    document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
+  }
 
   /* ===== Wireframe globe (hero background) ===== */
   (function(){
