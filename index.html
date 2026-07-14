@@ -201,6 +201,10 @@
   .dl .b svg{width:16px;height:16px}
   .dl-note{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:34px;color:var(--dim);font-family:var(--mono);font-size:.88rem;text-align:center}
   .dl-note svg{width:16px;height:16px;color:var(--neon);flex-shrink:0}
+  .dl-live{display:inline-flex;align-items:center;gap:11px;margin:22px auto 0;padding:11px 20px;border:1px solid rgba(0,255,136,.3);background:var(--neon-soft);border-radius:999px}
+  .dl-live-dot{width:9px;height:9px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon);animation:blink 1.4s ease-in-out infinite}
+  .dl-live-num{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--neon);line-height:1}
+  .dl-live-label{font-family:var(--mono);font-size:.82rem;color:var(--muted);letter-spacing:.04em}
 
   /* ===== Manifesto ===== */
   .mani{text-align:center;background:radial-gradient(90% 120% at 50% 0%,rgba(0,255,136,.07),transparent 60%);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(44px,7vw,80px) 28px}
@@ -491,6 +495,11 @@
         <div class="s-kick">// Obter acesso</div>
         <h2>Baixe o HidraBrowser</h2>
         <p>Pague <b style="color:var(--white)">US$1 em SOL</b> com <b style="color:var(--white)">qualquer carteira Solana</b> (via Solana Pay) e o download começa na hora. Escolha o seu sistema:</p>
+        <div class="dl-live reveal" aria-live="polite" aria-label="Downloads ao vivo">
+          <span class="dl-live-dot" aria-hidden="true"></span>
+          <span class="dl-live-num" id="dlCount">—</span>
+          <span class="dl-live-label">downloads · ao vivo</span>
+        </div>
       </div>
       <div class="grid-dl">
         <article class="dl reveal">
@@ -819,6 +828,25 @@
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePay(); });
     document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
   }
+
+  /* ===== Downloads ao vivo (GitHub Releases) ===== */
+  (function(){
+    var el=document.getElementById('dlCount');
+    if(!el) return;
+    var shown=false, current=0;
+    function set(target){
+      if(reduce){ el.textContent=target.toLocaleString('pt-BR'); current=target; shown=true; return; }
+      var start=shown?current:0, t0=performance.now(), dur=shown?600:1300; shown=true; current=target;
+      (function tick(now){ var p=Math.min((now-t0)/dur,1), v=Math.round(start+(target-start)*(1-Math.pow(1-p,3))); el.textContent=v.toLocaleString('pt-BR'); if(p<1) requestAnimationFrame(tick); })(t0);
+    }
+    function load(){
+      fetch('https://api.github.com/repos/NeurexBK/HidraNet/releases',{headers:{'Accept':'application/vnd.github+json'}})
+        .then(function(r){ return r.ok?r.json():null; })
+        .then(function(rels){ if(!Array.isArray(rels)) return; var total=0; rels.forEach(function(rel){ (rel.assets||[]).forEach(function(a){ total+=(a.download_count||0); }); }); set(total); })
+        .catch(function(){});
+    }
+    load(); setInterval(load,90000);
+  })();
 
   /* ===== Wireframe globe (hero background) ===== */
   (function(){
