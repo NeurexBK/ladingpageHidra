@@ -261,6 +261,14 @@
   .pay-link{display:inline-block;margin-top:12px;font-size:.9rem;color:var(--cyan)}
   .pay-foot{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--dim)}
   .pay-foot code{color:var(--muted)}
+  .pay-or{display:flex;align-items:center;gap:12px;margin:20px 0 14px;color:var(--dim);font-size:.78rem;font-family:var(--mono)}
+  .pay-or span{white-space:nowrap}
+  .pay-or::before,.pay-or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .pay-wallets{display:flex;flex-direction:column;gap:8px}
+  .pay-wallet{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:12px;border:1px solid var(--line-2);border-radius:12px;background:var(--card);color:var(--white);font-family:var(--font);font-weight:600;font-size:.95rem;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+  .pay-wallet:hover{border-color:var(--neon);background:var(--neon-soft);color:var(--neon)}
+  .pay-wallet .pw-dot{width:8px;height:8px;border-radius:50%;background:var(--neon)}
+  .pay-nowallet{color:var(--dim);font-size:.85rem;line-height:1.5;text-align:center}
   .pay-qr{width:196px;height:196px;margin:4px auto 10px;background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center}
   .pay-qr svg{width:100%;height:100%;display:block}
   .pay-scan{font-size:.84rem;color:var(--dim);margin-bottom:16px}
@@ -620,7 +628,8 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
       Abrir na carteira
     </a>
-    <button class="btn btn-ghost pay-ext" id="payExt" type="button">Pagar com a extensão do navegador</button>
+    <div class="pay-or"><span>ou conecte uma carteira no computador</span></div>
+    <div class="pay-wallets" id="payWallets"></div>
     <div class="pay-status" id="payStatus" hidden></div>
     <a class="pay-link" id="payTx" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
     <div class="pay-foot">Recebedor: <code>9Uz7…79sZ</code> · Solana</div>
@@ -705,7 +714,7 @@
   var payStatusEl=document.getElementById('payStatus');
   var payQrEl=document.getElementById('payQr');
   var payOpenEl=document.getElementById('payOpen');
-  var payExtEl=document.getElementById('payExt');
+  var payWalletsEl=document.getElementById('payWallets');
   var payTxEl=document.getElementById('payTx');
   var payFile=null, payOsName='', paySol=null, payLamports=0, payRef=null, payPoll=null, payDone=false;
   function pStatus(msg,type){ if(!payStatusEl) return; payStatusEl.hidden=!msg; payStatusEl.textContent=msg||''; payStatusEl.className='pay-status'+(type?(' '+type):''); }
@@ -734,6 +743,7 @@
     payOsEl.textContent=os; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true;
     pStatus('Gerando cobrança…'); if(payOpenEl) payOpenEl.removeAttribute('href');
     payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
+    renderWallets(); setTimeout(renderWallets,700);
     loadLibs().then(function(){ payRef=solanaWeb3.Keypair.generate().publicKey.toBase58(); return fetchPrice(); }).then(function(sol){
       paySol=sol;
       var amtStr=sol.toFixed(6).replace(/0+$/,'').replace(/\.$/,'');
@@ -747,20 +757,37 @@
     }).catch(function(e){ pStatus('Erro: '+((e&&e.message)?e.message:e),'err'); });
   }
   function closePay(){ stopPoll(); payModal.classList.remove('open'); payModal.setAttribute('aria-hidden','true'); }
-  function getInjected(){
-    if(window.phantom&&window.phantom.solana&&window.phantom.solana.isPhantom) return window.phantom.solana;
-    if(window.solflare&&window.solflare.isSolflare) return window.solflare;
-    if(window.backpack&&window.backpack.isBackpack) return window.backpack;
-    if(window.solana&&window.solana.connect) return window.solana;
-    return null;
+  function detectWallets(){
+    var list=[], seen={};
+    function add(name,prov){ if(prov&&prov.connect&&prov.signAndSendTransaction&&!seen[name]){ seen[name]=1; list.push({name:name,prov:prov}); } }
+    if(window.phantom&&window.phantom.solana&&window.phantom.solana.isPhantom) add('Phantom',window.phantom.solana);
+    if(window.solflare&&window.solflare.isSolflare) add('Solflare',window.solflare);
+    if(window.backpack&&window.backpack.isBackpack) add('Backpack',window.backpack);
+    if(window.coinbaseSolana) add('Coinbase',window.coinbaseSolana);
+    if(window.trustwallet&&window.trustwallet.solana) add('Trust',window.trustwallet.solana);
+    if(window.glowSolana) add('Glow',window.glowSolana);
+    if(window.solana&&window.solana.connect&&window.solana.signAndSendTransaction){ var nm=window.solana.isPhantom?'Phantom':(window.solana.isSolflare?'Solflare':(window.solana.isBackpack?'Backpack':'Carteira Solana')); add(nm,window.solana); }
+    return list;
   }
-  function payWithExtension(){
+  function renderWallets(){
+    if(!payWalletsEl) return;
+    var wl=detectWallets();
+    payWalletsEl.innerHTML='';
+    if(!wl.length){ var d=document.createElement('div'); d.className='pay-nowallet'; d.textContent='Nenhuma carteira detectada no navegador. Escaneie o QR com o app do celular, ou instale Phantom / Solflare / Backpack.'; payWalletsEl.appendChild(d); return; }
+    wl.forEach(function(w){
+      var b=document.createElement('button'); b.type='button'; b.className='pay-wallet';
+      b.innerHTML='<span class="pw-dot"></span>Pagar com '+w.name;
+      b.addEventListener('click',function(){ payWithProvider(w.prov,w.name); });
+      payWalletsEl.appendChild(b);
+    });
+  }
+  function payWithProvider(prov,name){
+    if(payDone) return;
     if(!paySol||!window.solanaWeb3){ pStatus('Aguarde a cobrança carregar…','err'); return; }
-    var prov=getInjected();
-    if(!prov||!prov.connect){ pStatus('Nenhuma extensão de carteira encontrada. Use o QR acima com o app do celular.','err'); return; }
-    pStatus('Conecte sua carteira…');
+    pStatus('Conecte a '+name+'…');
     prov.connect().then(function(resp){
       var pk=(resp&&resp.publicKey)?resp.publicKey:prov.publicKey;
+      if(!pk) throw new Error('Não consegui obter a conta da carteira.');
       var from=new solanaWeb3.PublicKey(pk.toString());
       var c=conn();
       return c.getLatestBlockhash().then(function(bh){
@@ -768,11 +795,11 @@
         var ix=solanaWeb3.SystemProgram.transfer({fromPubkey:from,toPubkey:new solanaWeb3.PublicKey(MERCHANT),lamports:payLamports});
         ix.keys.push({pubkey:new solanaWeb3.PublicKey(payRef),isSigner:false,isWritable:false});
         tx.add(ix);
-        pStatus('Confirme o pagamento na carteira…');
+        pStatus('Confirme o pagamento na '+name+'…');
         return prov.signAndSendTransaction(tx).then(function(sent){
           var sig=(sent&&sent.signature)?sent.signature:sent;
-          payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false;
-          pStatus('Confirmando na rede…');
+          if(sig){ payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false; }
+          pStatus('Confirmando na rede Solana…');
           var n=0, iv=setInterval(function(){
             if(payDone){ clearInterval(iv); return; }
             c.getSignatureStatuses([sig]).then(function(st){
@@ -784,13 +811,12 @@
           },2000);
         });
       });
-    }).catch(function(e){ var m=(e&&e.message)?e.message:String(e); if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.'; pStatus('Erro: '+m,'err'); });
+    }).catch(function(e){ var m=(e&&e.message)?e.message:String(e); if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.'; pStatus('Erro ('+name+'): '+m,'err'); });
   }
   if(payModal){
     document.getElementById('payClose').addEventListener('click',closePay);
     payModal.addEventListener('click',function(e){ if(e.target===payModal) closePay(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePay(); });
-    if(payExtEl) payExtEl.addEventListener('click',payWithExtension);
     document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
   }
 
