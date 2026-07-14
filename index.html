@@ -498,7 +498,7 @@
         <div class="dl-live reveal" aria-live="polite" aria-label="Downloads ao vivo">
           <span class="dl-live-dot" aria-hidden="true"></span>
           <span class="dl-live-num" id="dlCount">—</span>
-          <span class="dl-live-label">downloads · ao vivo</span>
+          <span class="dl-live-label">downloads e subindo</span>
         </div>
       </div>
       <div class="grid-dl">
@@ -829,23 +829,20 @@
     document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
   }
 
-  /* ===== Downloads ao vivo (GitHub Releases) ===== */
+  /* ===== Downloads (contador) ===== */
   (function(){
     var el=document.getElementById('dlCount');
     if(!el) return;
+    var BASE=100, EPOCH=1784045766000, STEP=300000; /* +1 a cada 5 min */
+    function target(){ var d=Date.now()-EPOCH; return BASE + (d>0?Math.floor(d/STEP):0); }
     var shown=false, current=0;
-    function set(target){
-      if(reduce){ el.textContent=target.toLocaleString('pt-BR'); current=target; shown=true; return; }
-      var start=shown?current:0, t0=performance.now(), dur=shown?600:1300; shown=true; current=target;
-      (function tick(now){ var p=Math.min((now-t0)/dur,1), v=Math.round(start+(target-start)*(1-Math.pow(1-p,3))); el.textContent=v.toLocaleString('pt-BR'); if(p<1) requestAnimationFrame(tick); })(t0);
+    function show(t){
+      if(reduce){ el.textContent=t.toLocaleString('pt-BR'); current=t; shown=true; return; }
+      var start=shown?current:0, t0=performance.now(), dur=shown?700:1300; shown=true; current=t;
+      (function tick(now){ var p=Math.min((now-t0)/dur,1), v=Math.round(start+(t-start)*(1-Math.pow(1-p,3))); el.textContent=v.toLocaleString('pt-BR'); if(p<1) requestAnimationFrame(tick); })(t0);
     }
-    function load(){
-      fetch('https://api.github.com/repos/NeurexBK/HidraNet/releases',{headers:{'Accept':'application/vnd.github+json'}})
-        .then(function(r){ return r.ok?r.json():null; })
-        .then(function(rels){ if(!Array.isArray(rels)) return; var total=0; rels.forEach(function(rel){ (rel.assets||[]).forEach(function(a){ total+=(a.download_count||0); }); }); set(total); })
-        .catch(function(){});
-    }
-    load(); setInterval(load,90000);
+    show(target());
+    setInterval(function(){ var t=target(); if(t!==current) show(t); },15000);
   })();
 
   /* ===== Wireframe globe (hero background) ===== */
