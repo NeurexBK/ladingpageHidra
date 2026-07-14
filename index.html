@@ -54,6 +54,7 @@
     --maxw:1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none !important}
   html{scroll-behavior:smooth}
   body{
     font-family:var(--font);background:var(--bg);color:var(--white);line-height:1.6;
@@ -621,7 +622,7 @@
     </a>
     <button class="btn btn-ghost pay-ext" id="payExt" type="button">Pagar com a extensão do navegador</button>
     <div class="pay-status" id="payStatus" hidden></div>
-    <a class="pay-link" id="payTx" href="#" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
+    <a class="pay-link" id="payTx" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
     <div class="pay-foot">Recebedor: <code>9Uz7…79sZ</code> · Solana</div>
   </div>
 </div>
