@@ -746,63 +746,42 @@
   function renderQR(url){ try{ var qr=window.qrcode(0,'M'); qr.addData(url); qr.make(); payQrEl.innerHTML=qr.createSvgTag({cellSize:5,margin:2,scalable:true}); }catch(e){ payQrEl.textContent='QR indisponível'; } }
   function savePending(){ try{ localStorage.setItem('hidra_pending',JSON.stringify({ref:payRef,file:payFile,os:payOsName,lamports:payLamports,start:paySessionStart})); }catch(_){} }
   function clearPending(){ try{ localStorage.removeItem('hidra_pending'); }catch(_){} }
-  function unlock(sig){
+  function osKey(){ var f=payFile||''; if(/Windows/.test(f))return 'windows'; if(/macOS-arm64/.test(f))return 'mac-arm'; if(/macOS-x64/.test(f))return 'mac-intel'; if(/Linux/.test(f))return 'linux'; return ''; }
+  function unlock(sig,url){
     if(payDone) return; payDone=true; stopPoll(); clearPending();
+    var dl=url||payFile;
     if(sig){ payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false; }
     if(payVerifyEl) payVerifyEl.hidden=true;
     pStatus('Pagamento confirmado! Se o download não iniciar, clique em "Baixar" abaixo.','ok');
-    if(payDlEl){ payDlEl.href=payFile; payDlEl.hidden=false; try{ payDlEl.focus(); }catch(_){} }
-    try{ var a=document.createElement('a'); a.href=payFile; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }catch(_){}
+    if(payDlEl){ payDlEl.href=dl; payDlEl.hidden=false; try{ payDlEl.focus(); }catch(_){} }
+    try{ var a=document.createElement('a'); a.href=dl; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }catch(_){}
   }
-  function checkMerchant(c){
-    if(payDone) return;
-    return c.getSignaturesForAddress(new solanaWeb3.PublicKey(MERCHANT),{limit:20}).then(function(list){
-      if(payDone||!list||!list.length){ if(!payDone) pStatus('Ainda não localizei o pagamento. Se acabou de pagar, aguarde ~30s e clique em verificar de novo.','err'); return; }
-      var cands=[]; for(var i=0;i<list.length;i++){ var it=list[i]; if(!it.err && it.blockTime && (it.blockTime*1000)>=(paySessionStart-180000)) cands.push(it.signature); }
-      (function nx(idx){
-        if(payDone) return;
-        if(idx>=cands.length){ pStatus('Ainda não localizei o pagamento. Aguarde a confirmação (~30s) e clique em verificar de novo.','err'); return; }
-        c.getParsedTransaction(cands[idx],{maxSupportedTransactionVersion:0}).then(function(tx){
-          if(payDone) return;
-          if(tx&&tx.meta&&!tx.meta.err){
-            var keys=tx.transaction.message.accountKeys, mi=-1;
-            for(var k=0;k<keys.length;k++){ var pk=keys[k].pubkey?keys[k].pubkey.toBase58():String(keys[k]); if(pk===MERCHANT){ mi=k; break; } }
-            if(mi>=0){ var delta=tx.meta.postBalances[mi]-tx.meta.preBalances[mi]; if(delta>=payLamports-15000){ unlock(cands[idx]); return; } }
-          }
-          nx(idx+1);
-        }).catch(function(){ nx(idx+1); });
-      })(0);
-    }).catch(function(){ if(!payDone) pStatus('Falha ao consultar a rede. Tente de novo.','err'); });
+  function verifyOnce(){
+    if(payDone||!payRef) return Promise.resolve(false);
+    return fetch('/api/verify?reference='+encodeURIComponent(payRef)+'&os='+encodeURIComponent(osKey()),{cache:'no-store'})
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(function(j){ if(payDone) return true; if(j&&j.paid){ unlock(j.signature,j.url); return true; } return false; })
+      .catch(function(){ return false; });
   }
   function manualVerify(){
     if(payDone) return;
-    if(!payRef||!window.solanaWeb3){ pStatus('Aguarde a cobrança carregar e tente de novo.','err'); return; }
-    pStatus('Verificando seu pagamento na blockchain…');
-    var c=conn();
-    c.getSignaturesForAddress(new solanaWeb3.PublicKey(payRef),{limit:10}).then(function(list){
-      if(payDone) return;
-      var sig=null; if(list&&list.length){ for(var i=list.length-1;i>=0;i--){ if(!list[i].err){ sig=list[i].signature; break; } } }
-      if(sig){ unlock(sig); return; }
-      return checkMerchant(c);
-    }).catch(function(){ checkMerchant(c); });
+    if(!payRef){ pStatus('Aguarde a cobrança carregar e tente de novo.','err'); return; }
+    pStatus('Verificando seu pagamento…');
+    verifyOnce().then(function(found){ if(!found && !payDone) pStatus('Ainda não localizei o pagamento. Se você acabou de pagar, aguarde ~30s e clique em verificar de novo.','err'); });
   }
   function resumePending(pend){
-    payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
-    payOsEl.textContent=pend.os||'HidraBrowser'; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true; if(payDlEl)payDlEl.hidden=true; if(payVerifyEl)payVerifyEl.hidden=true;
-    pStatus('Recuperando seu pagamento…');
     payFile=pend.file; payOsName=pend.os||''; payDone=false; payRef=pend.ref; payLamports=pend.lamports||0; paySessionStart=pend.start||0;
-    loadLibs().then(function(){ manualVerify(); }).catch(function(){ pStatus('Erro ao carregar. Recarregue a página.','err'); });
+    payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
+    payOsEl.textContent=pend.os||'HidraBrowser'; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true; if(payDlEl)payDlEl.hidden=true; if(payVerifyEl)payVerifyEl.hidden=false;
+    pStatus('Recuperando seu pagamento…');
+    manualVerify();
   }
   function startPolling(){
-    var c=conn(), tries=0, ref=new solanaWeb3.PublicKey(payRef);
+    var tries=0;
     payPoll=setInterval(function(){
       if(payDone){ stopPoll(); return; }
-      if(++tries>220){ stopPoll(); return; }
-      c.getSignaturesForAddress(ref,{limit:10}).then(function(list){
-        if(payDone||!list||!list.length) return;
-        var sig=null; for(var i=list.length-1;i>=0;i--){ if(!list[i].err){ sig=list[i].signature; break; } }
-        if(sig) unlock(sig);
-      }).catch(function(){});
+      if(++tries>300){ stopPoll(); return; }
+      verifyOnce();
     },4000);
   }
   function openPay(os,file){
