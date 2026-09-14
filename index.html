@@ -244,47 +244,6 @@
   .toast .tt svg{width:16px;height:16px}
   .toast .tm{color:var(--muted);font-size:.85rem;line-height:1.5}
 
-  /* ===== Pay modal ===== */
-  .pay-overlay{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,4,5,.8);backdrop-filter:blur(6px)}
-  .pay-overlay.open{display:flex}
-  .pay-card{position:relative;width:100%;max-width:420px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--radius);padding:34px 30px;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.7)}
-  .pay-x{position:absolute;top:15px;right:15px;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .pay-x:hover{color:var(--white);border-color:var(--line-2)}
-  .pay-x svg{width:16px;height:16px}
-  .pay-badge{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:var(--neon-soft);border:1px solid rgba(0,255,136,.3);padding:5px 13px;border-radius:999px;margin-bottom:18px}
-  .pay-card h3{font-size:1.5rem;font-weight:800;margin-bottom:10px}
-  .pay-desc{color:var(--muted);font-size:.98rem;margin-bottom:22px}
-  .pay-desc b{color:var(--white)}
-  .pay-amount{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--neon);line-height:1;margin-bottom:22px}
-  .pay-amount .pay-unit{font-size:1.1rem}
-  .pay-amount .pay-approx{display:block;font-family:var(--font);font-size:.82rem;font-weight:400;color:var(--dim);margin-top:8px}
-  .pay-go{width:100%}
-  .pay-status{margin-top:16px;font-size:.92rem;color:var(--muted);min-height:1.2em}
-  .pay-status.err{color:#ff6b6b}
-  .pay-status.ok{color:var(--neon)}
-  .pay-link{display:inline-block;margin-top:12px;font-size:.9rem;color:var(--cyan)}
-  .pay-foot{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--dim)}
-  .pay-foot code{color:var(--muted)}
-  .pay-or{display:flex;align-items:center;gap:12px;margin:20px 0 14px;color:var(--dim);font-size:.78rem;font-family:var(--mono)}
-  .pay-or span{white-space:nowrap}
-  .pay-or::before,.pay-or::after{content:"";flex:1;height:1px;background:var(--line)}
-  .pay-wallets{display:flex;flex-direction:column;gap:8px}
-  .pay-wallet{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:12px;border:1px solid var(--line-2);border-radius:12px;background:var(--card);color:var(--white);font-family:var(--font);font-weight:600;font-size:.95rem;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
-  .pay-wallet:hover{border-color:var(--neon);background:var(--neon-soft);color:var(--neon)}
-  .pay-wallet .pw-dot{width:8px;height:8px;border-radius:50%;background:var(--neon)}
-  .pay-nowallet{color:var(--dim);font-size:.85rem;line-height:1.5;text-align:center}
-  .pay-dl{width:100%;margin-top:14px}
-  .pay-verify{width:100%;margin-top:10px;padding:11px;border:1px solid var(--line-2);border-radius:12px;background:transparent;color:var(--muted);font-family:var(--font);font-weight:600;font-size:.92rem;cursor:pointer;transition:border-color .2s,color .2s}
-  .pay-verify:hover{border-color:var(--neon);color:var(--neon)}
-  .pay-recover{position:fixed;left:20px;right:20px;bottom:20px;z-index:350;max-width:470px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(11,13,15,.98);border:1px solid rgba(0,255,136,.4);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.6);color:var(--white);font-size:.9rem}
-  .pay-recover span{flex:1}
-  .pay-recover button{padding:8px 14px;border-radius:9px;border:1px solid var(--neon);background:var(--neon);color:#00140a;font-weight:700;cursor:pointer;white-space:nowrap;font-family:var(--font)}
-  .pay-recover button#payDismiss{background:transparent;color:var(--muted);border-color:var(--line);padding:8px 12px}
-  .pay-qr{width:196px;height:196px;margin:4px auto 10px;background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center}
-  .pay-qr svg{width:100%;height:100%;display:block}
-  .pay-scan{font-size:.84rem;color:var(--dim);margin-bottom:16px}
-  .pay-ext{width:100%;margin-top:10px;font-size:.92rem;padding:11px 22px}
-
   /* ===== Responsive ===== */
   @media (max-width:980px){
     .grid-p{grid-template-columns:repeat(2,1fr)}
@@ -501,7 +460,7 @@
       <div class="s-head reveal">
         <div class="s-kick">// Obter acesso</div>
         <h2>Baixe o HidraBrowser</h2>
-        <p>Pague <b style="color:var(--white)">US$1 em SOL</b> com <b style="color:var(--white)">qualquer carteira Solana</b> (via Solana Pay) e o download começa na hora. Escolha o seu sistema:</p>
+        <p>Gratuito e sem cadastro. Escolha o seu sistema e o download começa na hora.</p>
         <div class="dl-live reveal" aria-live="polite" aria-label="Downloads ao vivo">
           <span class="dl-live-dot" aria-hidden="true"></span>
           <span class="dl-live-num" id="dlCount">—</span>
@@ -514,45 +473,45 @@
           <h3>Windows</h3>
           <div class="desc">PC desktop / laptop</div>
           <div class="meta">v1.0.0 · x64 · 117 MB</div>
-          <button class="b" type="button" data-pay="Windows" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip">
+          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Windows-x64.zip" download="HidraNet-Browser-1.0.0-Windows-x64.zip" data-download="Windows">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Pagar $1 · Baixar
-          </button>
+            Baixar grátis
+          </a>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94s-2.07-.92-3.4-.89c-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.4.86 1.25 1.88 2.66 3.22 2.61 1.29-.05 1.78-.83 3.34-.83s2 .83 3.37.81c1.39-.03 2.27-1.28 3.12-2.54.98-1.46 1.39-2.87 1.41-2.94-.03-.01-2.71-1.04-2.74-4.13zM14.69 4.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44z"/></svg></div>
           <h3>macOS · Apple Silicon</h3>
           <div class="desc">MacBook M1/M2/M3/M4 (pós-2020)</div>
           <div class="meta">v1.0.0 · arm64 · 95 MB</div>
-          <button class="b" type="button" data-pay="macOS (Apple Silicon)" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip">
+          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-arm64.zip" download="HidraNet-Browser-1.0.0-macOS-arm64.zip" data-download="macOS (Apple Silicon)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Pagar $1 · Baixar
-          </button>
+            Baixar grátis
+          </a>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94s-2.07-.92-3.4-.89c-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.4.86 1.25 1.88 2.66 3.22 2.61 1.29-.05 1.78-.83 3.34-.83s2 .83 3.37.81c1.39-.03 2.27-1.28 3.12-2.54.98-1.46 1.39-2.87 1.41-2.94-.03-.01-2.71-1.04-2.74-4.13zM14.69 4.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44z"/></svg></div>
           <h3>macOS · Intel</h3>
           <div class="desc">MacBook Intel (anterior a 2020)</div>
           <div class="meta">v1.0.0 · x64 · 100 MB</div>
-          <button class="b" type="button" data-pay="macOS (Intel)" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip">
+          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-macOS-x64.zip" download="HidraNet-Browser-1.0.0-macOS-x64.zip" data-download="macOS (Intel)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Pagar $1 · Baixar
-          </button>
+            Baixar grátis
+          </a>
         </article>
         <article class="dl reveal">
           <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-1.7 0-2.6 1.5-2.6 3.4 0 .9.2 1.7.2 2.4-.6.7-1.5 1.9-2.3 3.6-.8 1.6-1.7 2.7-2.4 3.9-.4.7-.2 1.5.3 1.8.2.6.1 1.3.5 1.7.5.5 1.3.3 1.9.5.5.5 1.2 1 2 1.1.3.3.9.5 1.4.5s1.1-.2 1.4-.5c.8-.1 1.5-.6 2-1.1.6-.2 1.4 0 1.9-.5.4-.4.3-1.1.5-1.7.5-.3.7-1.1.3-1.8-.7-1.2-1.6-2.3-2.4-3.9-.8-1.7-1.7-2.9-2.3-3.6 0-.7.2-1.5.2-2.4C14.6 3.5 13.7 2 12 2m-1.4 4.1c.3 0 .6.4.6.9s-.3.9-.6.9-.6-.4-.6-.9.3-.9.6-.9m2.8 0c.3 0 .6.4.6.9s-.3.9-.6.9-.6-.4-.6-.9.3-.9.6-.9M12 9.2c.8 0 1.9.7 1.9 1.1 0 .3-.5.5-1 .7v.7c0 .4-.5.6-.9.6s-.9-.2-.9-.6v-.7c-.5-.2-1-.4-1-.7 0-.4 1.1-1.1 1.9-1.1"/></svg></div>
           <h3>Linux</h3>
           <div class="desc">Desktop / laptop (x64)</div>
           <div class="meta">v1.0.0 · x64 · 101 MB</div>
-          <button class="b" type="button" data-pay="Linux" data-file="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip">
+          <a class="b" href="https://github.com/NeurexBK/HidraNet/releases/download/v1.0.0/HidraNet-Browser-1.0.0-Linux-x64.zip" download="HidraNet-Browser-1.0.0-Linux-x64.zip" data-download="Linux">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Pagar $1 · Baixar
-          </button>
+            Baixar grátis
+          </a>
         </article>
       </div>
       <p class="dl-note reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Pagamento em SOL via Solana Pay (qualquer carteira) · Arquivos assinados — verifique as hashes SHA-256 antes de executar.
+        Download gratuito · Arquivos assinados — verifique as hashes SHA-256 antes de executar.
       </p>
     </div>
   </section>
@@ -629,31 +588,6 @@
   </div>
 </footer>
 
-<div id="payModal" class="pay-overlay" aria-hidden="true">
-  <div class="pay-card" role="dialog" aria-modal="true" aria-labelledby="payTitle">
-    <button class="pay-x" id="payClose" type="button" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <span class="pay-badge">Pagamento · Solana Pay</span>
-    <h3 id="payTitle">Baixar HidraBrowser</h3>
-    <p class="pay-desc">Pague <b>US$1 em SOL</b> com <b>qualquer carteira Solana</b> (Phantom, Solflare, Backpack, Trust…) para <span id="payOs">Windows</span>.</p>
-    <div class="pay-amount"><span id="paySol">—</span> <span class="pay-unit">SOL</span><span class="pay-approx">≈ US$1 · direto na sua carteira</span></div>
-    <div class="pay-qr" id="payQr" aria-label="QR de pagamento Solana Pay"></div>
-    <div class="pay-scan">Escaneie com o app da sua carteira Solana</div>
-    <a class="btn btn-primary pay-go" id="payOpen" href="#" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-      Abrir na carteira
-    </a>
-    <div class="pay-or"><span>ou conecte uma carteira no computador</span></div>
-    <div class="pay-wallets" id="payWallets"></div>
-    <div class="pay-status" id="payStatus" hidden></div>
-    <a class="btn btn-primary pay-dl" id="payDownload" rel="noopener" hidden>Baixar HidraBrowser agora</a>
-    <button class="pay-verify" id="payVerify" type="button" hidden>Já paguei — verificar pagamento</button>
-    <a class="pay-link" id="payTx" target="_blank" rel="noopener noreferrer" hidden>Ver transação no Solscan →</a>
-    <div class="pay-foot">Recebedor: <code>9Uz7…79sZ</code> · Solana</div>
-  </div>
-</div>
-
 <div id="toasts" aria-live="polite"></div>
 
 <script>
@@ -723,167 +657,26 @@
   var track=document.getElementById('track');
   if(track){track.innerHTML+=track.innerHTML;}
 
-  /* ===== Pagamento em SOL via Solana Pay (qualquer carteira) ===== */
-  var MERCHANT='9Uz7VyeBFmEU8sKnCwFsGC8AczjmLqnxZjQG7Vsm79sZ';
-  var RPC='https://solana-rpc.publicnode.com';
-  var payModal=document.getElementById('payModal');
-  var payOsEl=document.getElementById('payOs');
-  var paySolEl=document.getElementById('paySol');
-  var payStatusEl=document.getElementById('payStatus');
-  var payQrEl=document.getElementById('payQr');
-  var payOpenEl=document.getElementById('payOpen');
-  var payWalletsEl=document.getElementById('payWallets');
-  var payTxEl=document.getElementById('payTx');
-  var payVerifyEl=document.getElementById('payVerify'), payDlEl=document.getElementById('payDownload');
-  var payFile=null, payOsName='', paySol=null, payLamports=0, payRef=null, payPoll=null, payDone=false, paySessionStart=0;
-  function pStatus(msg,type){ if(!payStatusEl) return; payStatusEl.hidden=!msg; payStatusEl.textContent=msg||''; payStatusEl.className='pay-status'+(type?(' '+type):''); }
-  function loadScript(src,check){ return new Promise(function(res,rej){ if(check()) return res(); var s=document.createElement('script'); s.src=src; s.onload=function(){res();}; s.onerror=function(){rej(new Error('Falha ao carregar '+src));}; document.head.appendChild(s); }); }
-  function loadLibs(){ return loadScript('assets/solana-web3.min.js',function(){return !!window.solanaWeb3;}).then(function(){ return loadScript('assets/qrcode.min.js',function(){return !!window.qrcode;}); }); }
-  function fetchPrice(){ return fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd').then(function(r){return r.json();}).then(function(j){ var p=j&&j.solana&&j.solana.usd; if(!p) throw new Error('sem preço'); return 1/p; }); }
-  function stopPoll(){ if(payPoll){ clearInterval(payPoll); payPoll=null; } }
-  function conn(){ return new solanaWeb3.Connection(RPC,'confirmed'); }
-  function payURL(amtStr){ return 'solana:'+MERCHANT+'?amount='+amtStr+'&reference='+payRef+'&label='+encodeURIComponent('HidraNet')+'&message='+encodeURIComponent('HidraBrowser - '+payOsName); }
-  function renderQR(url){ try{ var qr=window.qrcode(0,'M'); qr.addData(url); qr.make(); payQrEl.innerHTML=qr.createSvgTag({cellSize:5,margin:2,scalable:true}); }catch(e){ payQrEl.textContent='QR indisponível'; } }
-  function savePending(){ try{ localStorage.setItem('hidra_pending',JSON.stringify({ref:payRef,file:payFile,os:payOsName,lamports:payLamports,start:paySessionStart})); }catch(_){} }
-  function clearPending(){ try{ localStorage.removeItem('hidra_pending'); }catch(_){} }
-  function osKey(){ var f=payFile||''; if(/Windows/.test(f))return 'windows'; if(/macOS-arm64/.test(f))return 'mac-arm'; if(/macOS-x64/.test(f))return 'mac-intel'; if(/Linux/.test(f))return 'linux'; return ''; }
-  function unlock(sig,url){
-    if(payDone) return; payDone=true; stopPoll(); clearPending();
-    var dl=url||payFile;
-    if(sig){ payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false; }
-    if(payVerifyEl) payVerifyEl.hidden=true;
-    pStatus('Pagamento confirmado! Se o download não iniciar, clique em "Baixar" abaixo.','ok');
-    if(payDlEl){ payDlEl.href=dl; payDlEl.hidden=false; try{ payDlEl.focus(); }catch(_){} }
-    try{ var a=document.createElement('a'); a.href=dl; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }catch(_){}
+  /* Toast ao iniciar download */
+  var toasts=document.getElementById('toasts');
+  function toast(os){
+    if(!toasts) return;
+    var t=document.createElement('div'); t.className='toast';
+    t.innerHTML='<div class="tt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Iniciando download</div><div class="tm">HidraBrowser para <b style="color:#fff">'+os+'</b> esta sendo baixado. Verifique a hash SHA-256.</div>';
+    toasts.appendChild(t);
+    requestAnimationFrame(function(){t.classList.add('show');});
+    var k=function(){t.classList.remove('show');setTimeout(function(){t.remove();},420);};
+    var tm=setTimeout(k,4200); t.addEventListener('click',function(){clearTimeout(tm);k();});
   }
-  function verifyOnce(){
-    if(payDone||!payRef) return Promise.resolve(false);
-    return fetch('/api/verify?reference='+encodeURIComponent(payRef)+'&os='+encodeURIComponent(osKey()),{cache:'no-store'})
-      .then(function(r){ return r.ok?r.json():null; })
-      .then(function(j){ if(payDone) return true; if(j&&j.paid){ unlock(j.signature,j.url); return true; } return false; })
-      .catch(function(){ return false; });
-  }
-  function manualVerify(){
-    if(payDone) return;
-    if(!payRef){ pStatus('Aguarde a cobrança carregar e tente de novo.','err'); return; }
-    pStatus('Verificando seu pagamento…');
-    verifyOnce().then(function(found){ if(!found && !payDone) pStatus('Ainda não localizei o pagamento. Se você acabou de pagar, aguarde ~30s e clique em verificar de novo.','err'); });
-  }
-  function resumePending(pend){
-    payFile=pend.file; payOsName=pend.os||''; payDone=false; payRef=pend.ref; payLamports=pend.lamports||0; paySessionStart=pend.start||0;
-    payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
-    payOsEl.textContent=pend.os||'HidraBrowser'; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true; if(payDlEl)payDlEl.hidden=true; if(payVerifyEl)payVerifyEl.hidden=false;
-    pStatus('Recuperando seu pagamento…');
-    manualVerify();
-  }
-  function startPolling(){
-    var tries=0;
-    payPoll=setInterval(function(){
-      if(payDone){ stopPoll(); return; }
-      if(++tries>300){ stopPoll(); return; }
-      verifyOnce();
-    },4000);
-  }
-  function openPay(os,file){
-    payFile=file; payOsName=os; payDone=false; paySol=null; payRef=null; paySessionStart=Date.now(); stopPoll();
-    payOsEl.textContent=os; paySolEl.textContent='—'; payQrEl.innerHTML=''; payTxEl.hidden=true; if(payDlEl)payDlEl.hidden=true; if(payVerifyEl)payVerifyEl.hidden=true;
-    pStatus('Gerando cobrança…'); if(payOpenEl) payOpenEl.removeAttribute('href');
-    payModal.classList.add('open'); payModal.setAttribute('aria-hidden','false');
-    renderWallets(); setTimeout(renderWallets,700);
-    loadLibs().then(function(){ payRef=solanaWeb3.Keypair.generate().publicKey.toBase58(); return fetchPrice(); }).then(function(sol){
-      paySol=sol;
-      var amtStr=sol.toFixed(6).replace(/0+$/,'').replace(/\.$/,'');
-      payLamports=Math.round(parseFloat(amtStr)*solanaWeb3.LAMPORTS_PER_SOL);
-      paySolEl.textContent=parseFloat(amtStr).toFixed(4);
-      var url=payURL(amtStr);
-      if(payOpenEl) payOpenEl.href=url;
-      renderQR(url);
-      pStatus('Escaneie o QR ou toque em "Abrir na carteira". Aguardando o pagamento…');
-      startPolling();
-      if(payVerifyEl) payVerifyEl.hidden=false;
-      savePending();
-    }).catch(function(e){ pStatus('Erro: '+((e&&e.message)?e.message:e),'err'); });
-  }
-  function closePay(){ stopPoll(); payModal.classList.remove('open'); payModal.setAttribute('aria-hidden','true'); }
-  function detectWallets(){
-    var list=[], seen={};
-    function add(name,prov){ if(prov&&prov.connect&&prov.signAndSendTransaction&&!seen[name]){ seen[name]=1; list.push({name:name,prov:prov}); } }
-    if(window.phantom&&window.phantom.solana&&window.phantom.solana.isPhantom) add('Phantom',window.phantom.solana);
-    if(window.solflare&&window.solflare.isSolflare) add('Solflare',window.solflare);
-    if(window.backpack&&window.backpack.isBackpack) add('Backpack',window.backpack);
-    if(window.coinbaseSolana) add('Coinbase',window.coinbaseSolana);
-    if(window.trustwallet&&window.trustwallet.solana) add('Trust',window.trustwallet.solana);
-    if(window.glowSolana) add('Glow',window.glowSolana);
-    if(window.solana&&window.solana.connect&&window.solana.signAndSendTransaction){ var nm=window.solana.isPhantom?'Phantom':(window.solana.isSolflare?'Solflare':(window.solana.isBackpack?'Backpack':'Carteira Solana')); add(nm,window.solana); }
-    return list;
-  }
-  function renderWallets(){
-    if(!payWalletsEl) return;
-    var wl=detectWallets();
-    payWalletsEl.innerHTML='';
-    if(!wl.length){ var d=document.createElement('div'); d.className='pay-nowallet'; d.textContent='Nenhuma carteira detectada no navegador. Escaneie o QR com o app do celular, ou instale Phantom / Solflare / Backpack.'; payWalletsEl.appendChild(d); return; }
-    wl.forEach(function(w){
-      var b=document.createElement('button'); b.type='button'; b.className='pay-wallet';
-      b.innerHTML='<span class="pw-dot"></span>Pagar com '+w.name;
-      b.addEventListener('click',function(){ payWithProvider(w.prov,w.name); });
-      payWalletsEl.appendChild(b);
-    });
-  }
-  function payWithProvider(prov,name){
-    if(payDone) return;
-    if(!paySol||!window.solanaWeb3){ pStatus('Aguarde a cobrança carregar…','err'); return; }
-    pStatus('Conecte a '+name+'…');
-    prov.connect().then(function(resp){
-      var pk=(resp&&resp.publicKey)?resp.publicKey:prov.publicKey;
-      if(!pk) throw new Error('Não consegui obter a conta da carteira.');
-      var from=new solanaWeb3.PublicKey(pk.toString());
-      var c=conn();
-      return c.getLatestBlockhash().then(function(bh){
-        var tx=new solanaWeb3.Transaction({feePayer:from,recentBlockhash:bh.blockhash});
-        var ix=solanaWeb3.SystemProgram.transfer({fromPubkey:from,toPubkey:new solanaWeb3.PublicKey(MERCHANT),lamports:payLamports});
-        ix.keys.push({pubkey:new solanaWeb3.PublicKey(payRef),isSigner:false,isWritable:false});
-        tx.add(ix);
-        pStatus('Confirme o pagamento na '+name+'…');
-        return prov.signAndSendTransaction(tx).then(function(sent){
-          var sig=(sent&&sent.signature)?sent.signature:sent;
-          if(sig){ payTxEl.href='https://solscan.io/tx/'+sig; payTxEl.hidden=false; }
-          pStatus('Confirmando na rede Solana…');
-          var n=0, iv=setInterval(function(){
-            if(payDone){ clearInterval(iv); return; }
-            c.getSignatureStatuses([sig]).then(function(st){
-              var s=st&&st.value&&st.value[0];
-              if(s&&s.err){ clearInterval(iv); pStatus('A transação falhou na rede.','err'); }
-              else if(s&&(s.confirmationStatus==='confirmed'||s.confirmationStatus==='finalized')){ clearInterval(iv); unlock(sig); }
-              else if(++n>45){ clearInterval(iv); pStatus('Tempo esgotado — confira no Solscan.','err'); }
-            }).catch(function(){ if(++n>45){ clearInterval(iv); } });
-          },2000);
-        });
-      });
-    }).catch(function(e){ var m=(e&&e.message)?e.message:String(e); if(/reject|4001|denied|cancel|user/i.test(m)) m='Pagamento cancelado.'; pStatus('Erro ('+name+'): '+m,'err'); });
-  }
-  if(payModal){
-    document.getElementById('payClose').addEventListener('click',closePay);
-    payModal.addEventListener('click',function(e){ if(e.target===payModal) closePay(); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePay(); });
-    if(payVerifyEl) payVerifyEl.addEventListener('click',manualVerify);
-    document.querySelectorAll('[data-pay]').forEach(function(b){ b.addEventListener('click',function(){ openPay(b.getAttribute('data-pay'), b.getAttribute('data-file')); }); });
-    try{
-      var pend=JSON.parse(localStorage.getItem('hidra_pending')||'null');
-      if(pend&&pend.ref&&pend.file&&pend.start&&(Date.now()-pend.start)<7200000){
-        var rb=document.createElement('div'); rb.className='pay-recover';
-        rb.innerHTML='<span>Você tem um pagamento pendente.</span> <button type="button" id="payResume">Verificar e baixar</button> <button type="button" id="payDismiss" aria-label="Dispensar">×</button>';
-        document.body.appendChild(rb);
-        document.getElementById('payDismiss').addEventListener('click',function(){ clearPending(); rb.remove(); });
-        document.getElementById('payResume').addEventListener('click',function(){ rb.remove(); resumePending(pend); });
-      }
-    }catch(_){}
-  }
+  document.querySelectorAll('[data-download]').forEach(function(b){
+    b.addEventListener('click',function(){toast(b.getAttribute('data-download'));});
+  });
 
   /* ===== Downloads (contador) ===== */
   (function(){
     var el=document.getElementById('dlCount');
     if(!el) return;
-    var BASE=100, EPOCH=1784045766000, STEP=300000; /* +1 a cada 5 min */
+    var BASE=0, EPOCH=1789387990508, STEP=1800000; /* +1 a cada 30 min */
     function target(){ var d=Date.now()-EPOCH; return BASE + (d>0?Math.floor(d/STEP):0); }
     var shown=false, current=0;
     function show(t){
