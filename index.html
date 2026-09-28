@@ -179,13 +179,21 @@
   .pill .num{position:absolute;top:20px;right:24px;font-family:var(--mono);font-size:.85rem;color:var(--dim)}
 
   /* ===== Apps strip ===== */
-  .apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .apps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .app{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-s);padding:26px 22px;text-align:center;transition:transform .3s,border-color .3s}
   .app:hover{transform:translateY(-6px);border-color:var(--line-2)}
   .app .ic{width:52px;height:52px;margin:0 auto 16px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--cyan-soft);border:1px solid rgba(0,204,255,.25);color:var(--cyan)}
   .app .ic svg{width:26px;height:26px}
   .app h4{font-size:1.06rem;font-weight:700;margin-bottom:6px}
   .app p{color:var(--muted);font-size:.9rem}
+  /* ===== Para quem ===== */
+  .who{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .who-c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-s);padding:26px 22px;transition:transform .3s,border-color .3s,background .3s}
+  .who-c:hover{transform:translateY(-6px);border-color:rgba(0,255,136,.4);background:var(--card-2)}
+  .who-c .ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--neon-soft);border:1px solid rgba(0,255,136,.25);color:var(--neon);margin-bottom:16px}
+  .who-c .ic svg{width:24px;height:24px}
+  .who-c h4{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+  .who-c p{color:var(--muted);font-size:.95rem}
 
   /* ===== Download ===== */
   .grid-dl{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -249,6 +257,7 @@
     .grid-p{grid-template-columns:repeat(2,1fr)}
     .grid-dl{grid-template-columns:repeat(2,1fr)}
     .apps{grid-template-columns:repeat(2,1fr)}
+    .who{grid-template-columns:repeat(2,1fr)}
     .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
     .foot-brand{grid-column:1 / -1}
   }
@@ -264,7 +273,7 @@
     .stats{grid-template-columns:1fr 1fr}
   }
   @media (max-width:560px){
-    .grid-p,.grid-dl,.apps{grid-template-columns:1fr}
+    .grid-p,.grid-dl,.apps,.who{grid-template-columns:1fr}
     .hero-actions .btn{width:100%}
     .wrap{padding:0 18px}
   }
@@ -290,10 +299,10 @@
     </a>
     <nav class="nav-mid" id="navMid">
       <a href="#produtos">Produtos</a>
+      <a href="#quem">Para quem</a>
       <a href="#pilares">Pilares</a>
       <a href="#apps">Aplicações</a>
       <a href="#download">Download</a>
-      <a href="#manifesto">Manifesto</a>
     </nav>
     <div class="nav-cta">
       <a href="#download" class="btn btn-primary">Baixar</a>
@@ -360,7 +369,7 @@
         <div class="stat"><div class="n cyan">3–7</div><div class="l">Saltos por rota</div></div>
         <div class="stat"><div class="n">∞</div><div class="l">Nós possíveis</div></div>
         <div class="stat"><div class="n cyan" data-count="256" data-suffix="-bit">0</div><div class="l">+ Kyber pós-quântica</div></div>
-        <div class="stat"><div class="n" data-count="4" data-suffix="">0</div><div class="l">Apps nativas</div></div>
+        <div class="stat"><div class="n" data-count="5" data-suffix="">0</div><div class="l">Apps nativas</div></div>
         <div class="stat"><div class="n cyan" data-count="100" data-suffix="%">0</div><div class="l">Código aberto</div></div>
       </div>
     </div>
@@ -378,6 +387,39 @@
         <span class="chip"><span class="d"></span>Criptografia E2E</span>
         <span class="chip"><span class="d"></span>Serviços Ocultos</span>
         <span class="chip"><span class="d"></span>100% Open Source</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARA QUEM ===== -->
+  <section class="section" id="quem">
+    <div class="wrap">
+      <div class="s-head reveal">
+        <div class="s-kick">// Para quem é</div>
+        <h2>Privacidade que serve pra todo mundo</h2>
+        <p>Não é só para especialistas. É para qualquer um que queira usar a internet sem ser vigiado.</p>
+      </div>
+      <div class="who">
+        <article class="who-c reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4>Todo mundo</h4>
+          <p>Converse, pesquise e navegue no dia a dia sem rastreamento, anúncios ou coleta de dados.</p>
+        </article>
+        <article class="who-c reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h4>Jornalistas & fontes</h4>
+          <p>Comunique-se e receba informações sem revelar identidade, IP ou localização.</p>
+        </article>
+        <article class="who-c reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+          <h4>Quem vive sob censura</h4>
+          <p>Acesse e publique livremente onde a internet é bloqueada, filtrada ou vigiada.</p>
+        </article>
+        <article class="who-c reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h4>Criadores & comunidades</h4>
+          <p>Sites, fóruns e canais que ninguém consegue derrubar, bloquear ou censurar.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -419,7 +461,7 @@
         <article class="pill reveal"><span class="num">06</span>
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
           <h3>Aplicações Nativas</h3>
-          <p>Chat, e-mail, fórum e criador de sites — tudo anônimo e integrado ao navegador.</p>
+          <p>Chat, e-mail, fórum, busca e criador de sites — tudo anônimo e integrado ao navegador.</p>
         </article>
       </div>
     </div>
@@ -449,6 +491,10 @@
         <article class="app reveal">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
           <h4>Criador de Sites</h4><p>Publique páginas .hidra em minutos, sem revelar quem você é.</p>
+        </article>
+        <article class="app reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h4>Busca</h4><p>HidraSearch: encontre sites .hidra e conteúdo na rede, sem rastrear você.</p>
         </article>
       </div>
     </div>
@@ -560,6 +606,7 @@
       <div class="foot-col">
         <h5>Mapa</h5>
         <a href="#produtos">Produtos</a>
+        <a href="#quem">Para quem</a>
         <a href="#pilares">Pilares</a>
         <a href="#apps">Aplicações</a>
         <a href="#download">Download</a>
