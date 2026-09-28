@@ -14,14 +14,14 @@
   gtag('config', 'G-EVWX36VQ3G');
 </script>
 
-<title>HidraNet — A rede que não pode ser desligada</title>
-<meta name="description" content="HidraNet: a rede anônima e descentralizada que não pode ser desligada, censurada ou vigiada. Corte uma cabeça, nascem duas. Roteamento cebola, criptografia pós-quântica e serviços .hidra.">
+<title>HidraNet — A rede privada e anônima</title>
+<meta name="description" content="HidraNet: a rede privada e anônima. Navegue, converse, publique e crie sem rastreamento, sem anúncios e sem coleta de dados. Criptografia pós-quântica, roteamento cebola e serviços .hidra.">
 <meta name="theme-color" content="#050506">
 <meta name="author" content="HidraNet">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="HidraNet — A rede que não pode ser desligada">
-<meta property="og:description" content="Corte uma cabeça, nascem duas. A rede anônima e descentralizada sem servidores, sem donos e sem botão de desligar.">
+<meta property="og:title" content="HidraNet — A rede privada e anônima">
+<meta property="og:description" content="Navegue, converse e crie com privacidade total: anônimo por padrão, criptografado de ponta a ponta e sem rastreadores.">
 
 <link rel="icon" type="image/png" href="assets/hidranet-logo.png">
 <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050506'/%3E%3Cg stroke='%2300ff88' stroke-width='2' fill='none' stroke-linecap='round'%3E%3Cpath d='M16 27V17'/%3E%3Cpath d='M16 17C10 13.5 8.5 10 8.5 7'/%3E%3Cpath d='M16 17C22 13.5 23.5 10 23.5 7'/%3E%3Cpath d='M16 17V6.5'/%3E%3C/g%3E%3Cg fill='%2300ff88'%3E%3Ccircle cx='8.5' cy='6' r='2.3'/%3E%3Ccircle cx='23.5' cy='6' r='2.3'/%3E%3Ccircle cx='16' cy='5' r='2.3'/%3E%3Ccircle cx='16' cy='27.5' r='2.6'/%3E%3C/g%3E%3C/svg%3E">
@@ -326,7 +326,7 @@
     <span class="sb-sep sb-hide"></span>
     <span class="sb-hide">LATÊNCIA <b id="sbPing">42</b>ms</span>
     <span class="sb-sep sb-hide"></span>
-    <span>CENSURA <b>0</b></span>
+    <span>RASTREADORES <b>0</b></span>
     <span class="sb-right">HIDRANET // v1.0.0</span>
   </div>
 </div>
@@ -361,8 +361,8 @@
         <div class="hero-copy">
           <img class="hero-logo" src="assets/hidranet-logo.png" alt="Logo HidraNet" hidden onload="this.hidden=false">
           <span class="eyebrow">Protocolo Hidra // Transmissão aberta</span>
-          <h1>Corte uma<br>cabeça.<br><span class="g">Nascem duas.</span></h1>
-          <p class="sub">A rede anônima e descentralizada que <b>não pode ser desligada</b>, censurada ou vigiada. Sem servidores. Sem donos. Sem botão de desligar.</p>
+          <h1>Sua vida<br>online,<br><span class="g">só sua.</span></h1>
+          <p class="sub">A rede <b>privada e anônima</b> onde você navega, conversa e cria sem rastreamento, sem anúncios e sem coleta de dados — com criptografia de ponta a ponta em tudo.</p>
           <div class="hero-actions">
             <a href="#download" class="btn btn-primary btn-lg">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -371,9 +371,9 @@
             <a href="#protocolo" class="btn btn-ghost btn-lg">Ver o protocolo</a>
           </div>
           <div class="hero-meta">
-            <div class="cell"><div class="v">00</div><div class="k">Servidores centrais</div></div>
+            <div class="cell"><div class="v">0</div><div class="k">Rastreadores</div></div>
             <div class="cell"><div class="v cy">3–7</div><div class="k">Saltos por rota</div></div>
-            <div class="cell"><div class="v">∞</div><div class="k">Nós possíveis</div></div>
+            <div class="cell"><div class="v">0</div><div class="k">Contas ou cadastro</div></div>
             <div class="cell"><div class="v cy">256b</div><div class="k">Kyber PQ</div></div>
           </div>
         </div>
@@ -383,12 +383,12 @@
             <canvas id="mesh"></canvas>
             <div class="ex-hud top">
               <span class="ex-tag"><span class="d"></span>Malha Hidra — ao vivo</span>
-              <span class="ex-hint" id="exHint">tente derrubar &#9656;</span>
+              <span class="ex-hint" id="exHint">clique para rotear &#9656;</span>
             </div>
             <div class="ex-flash" id="meshFlash"></div>
             <div class="ex-hud bot">
-              <span class="l">Tentativas de derrubar <b id="killCount">000</b></span>
-              <span class="l">Derrubada: <b class="ex-never">NUNCA</b></span>
+              <span class="l">Rotas anônimas <b id="killCount">000</b></span>
+              <span class="l">Seu IP: <b class="ex-never">OCULTO</b></span>
             </div>
           </div>
         </div>
@@ -400,15 +400,15 @@
   <section class="section" id="protocolo">
     <div class="wrap">
       <div class="s-head reveal">
-        <span class="eyebrow">01 // Por que não morre</span>
-        <h2 class="title">Projetada para ser<br>impossível de matar.</h2>
-        <p class="lead">A Hidra não tem um coração para atingir. Cada usuário é uma cabeça. Enquanto existirem dois nós, a rede vive — e se regenera.</p>
+        <span class="eyebrow">01 // Anonimato de verdade</span>
+        <h2 class="title">Privacidade em<br>cada camada.</h2>
+        <p class="lead">Anonimato não é um botão que você liga. É como a HidraNet funciona por dentro — em cada conexão, por padrão.</p>
       </div>
       <div class="sheet mark reveal">
         <div class="spec">
           <div class="idx">/01</div>
-          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M6 7l4.5 3.5M18 7l-4.5 3.5M6 17l4.5-3.5M18 17l-4.5-3.5"/></svg>Sem centro</div>
-          <div class="ds">Cada computador é um nó igual aos outros. Não existe servidor para apreender, processar ou desligar.</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M6 7l4.5 3.5M18 7l-4.5 3.5M6 17l4.5-3.5M18 17l-4.5-3.5"/></svg>Zero rastreamento</div>
+          <div class="ds">Sem cookies, sem fingerprint, sem perfis de anúncio. A HidraNet não coleta nem vende os seus dados.</div>
         </div>
         <div class="spec">
           <div class="idx">/02</div>
@@ -423,7 +423,7 @@
         <div class="spec">
           <div class="idx">/04</div>
           <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>Ofuscação total</div>
-          <div class="ds">O tráfego se disfarça de HTTPS comum. Firewalls que bloqueiam Tor não conseguem ver a Hidra.</div>
+          <div class="ds">O seu tráfego se disfarça de HTTPS comum — sem revelar que você está usando a HidraNet.</div>
         </div>
         <div class="spec">
           <div class="idx">/05</div>
@@ -433,7 +433,7 @@
         <div class="spec">
           <div class="idx">/06</div>
           <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg>Código aberto</div>
-          <div class="ds">Nada de caixa-preta. <span class="hi">100%</span> auditável — a confiança vem do código, não de promessas.</div>
+          <div class="ds">Nada de caixa-preta. <span class="hi">100%</span> auditável — a sua privacidade vem do código, não de promessas.</div>
         </div>
       </div>
     </div>
@@ -460,7 +460,7 @@
         </div>
         <div class="row">
           <div class="ri">03</div>
-          <div class="rmain"><div class="rn">Fórum</div><div class="rd">Comunidades públicas e persistentes, à prova de censura.</div></div>
+          <div class="rmain"><div class="rn">Fórum</div><div class="rd">Comunidades públicas e persistentes, sem rastreamento de quem participa.</div></div>
           <div class="rt">forum.hidra</div>
         </div>
         <div class="row">
@@ -503,16 +503,16 @@
           <p>Comunique-se e receba informações sem revelar identidade, IP ou localização.</p>
         </article>
         <article class="who-c">
-          <div class="wi">/ CENSURA</div>
-          <svg class="wic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
-          <h4>Quem vive sob censura</h4>
-          <p>Acesse e publique livremente onde a internet é bloqueada, filtrada ou vigiada.</p>
+          <div class="wi">/ SEGURANÇA</div>
+          <svg class="wic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h4>Segurança pessoal</h4>
+          <p>Mantenha a sua identidade, localização e conversas fora do alcance de terceiros.</p>
         </article>
         <article class="who-c">
           <div class="wi">/ CRIADORES</div>
           <svg class="wic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           <h4>Criadores & comunidades</h4>
-          <p>Sites, fóruns e canais que ninguém consegue derrubar, bloquear ou apagar.</p>
+          <p>Crie e publique seus próprios sites com o gerador de sites integrado.</p>
         </article>
       </div>
     </div>
@@ -528,9 +528,9 @@
           <span class="stamp">SEM ORIGEM · SEM DESTINO</span>
         </div>
         <div class="trx-body">
-          <p>A internet virou vitrine vigiada. Cada clique, medido. Cada voz, rastreável. Cada servidor, um ponto que alguém pode desligar.</p>
-          <p>A Hidra <span class="hl">não tem centro para atacar</span>, nem dono para pressionar, nem botão para desligar. Enquanto existirem dois nós, ela vive.</p>
-          <p>Não pedimos permissão para existir.<br>Você também não precisa.<span class="cur" aria-hidden="true"></span></p>
+          <p>Sua vida online deveria ser só sua. Cada mensagem, cada busca, cada página que você abre.</p>
+          <p>A HidraNet é <span class="hl">privada por padrão</span>: anônima, criptografada de ponta a ponta, sem contas, sem número de telefone e sem rastreadores.</p>
+          <p>Você navega, conversa e cria.<br>O que é seu continua só seu.<span class="cur" aria-hidden="true"></span></p>
         </div>
       </div>
     </div>
@@ -540,13 +540,13 @@
   <section class="section" id="download" style="padding-top:0">
     <div class="wrap">
       <div class="s-head reveal">
-        <span class="eyebrow">04 // Implante um nó</span>
-        <h2 class="title">Baixe. Vire uma<br>cabeça da Hidra.</h2>
-        <p class="lead">Gratuito e sem cadastro. Escolha o seu sistema e o download começa na hora. A cada instalação, a rede fica mais impossível de derrubar.</p>
-        <div class="dl-live" aria-live="polite" aria-label="Nós implantados ao vivo">
+        <span class="eyebrow">04 // Download</span>
+        <h2 class="title">Baixe. Fique<br>invisível.</h2>
+        <p class="lead">Gratuito e sem cadastro. Escolha o seu sistema e o download começa na hora.</p>
+        <div class="dl-live" aria-live="polite" aria-label="Downloads ao vivo">
           <span class="d" aria-hidden="true"></span>
           <span class="num" id="dlCount">—</span>
-          <span class="lab">nós implantados e subindo</span>
+          <span class="lab">downloads e subindo</span>
         </div>
       </div>
       <div class="grid-dl mark reveal">
@@ -610,7 +610,7 @@
           <img class="mark-img" src="assets/hidranet-logo.png" alt="" hidden onload="this.hidden=false;this.previousElementSibling.hidden=true">
           <span class="wm">HIDRA<span class="n">NET</span></span>
         </a>
-        <p>A rede que não pode ser desligada. Sem censura, sem vigilância, sem dono.</p>
+        <p>A rede privada e anônima. Sem rastreamento, sem anúncios, sem coleta de dados.</p>
       </div>
       <div class="foot-col">
         <h5>Rede</h5>
@@ -725,6 +725,7 @@
     var nodes=[], links=[], packets=[], bursts=[];
     var attempts=0, hovered=null, visible=true, running=false, rafId=0, userActed=false, teased=false, teaseScheduled=false, t0=0;
     var killEl=document.getElementById('killCount'), flashEl=document.getElementById('meshFlash'), hintEl=document.getElementById('exHint');
+    var route=[], routeStart=0, ROUTE_LIFE=2000;
 
     function rnd(a,b){return a+Math.random()*(b-a);}
     function size(){
@@ -751,25 +752,17 @@
       nodes.forEach(function(n){ nearestK(n.x,n.y,3,n).forEach(function(m){ if(Math.random()<.82)connect(n,m); }); });
     }
     function flash(msg){ if(!flashEl)return; flashEl.textContent='> '+msg; flashEl.classList.add('on'); clearTimeout(flash._t); flash._t=setTimeout(function(){flashEl.classList.remove('on');},1600); }
-    function sever(n){
-      if(!n)return;
+    function neighbors(n){ var out=[]; for(var i=0;i<links.length;i++){ var l=links[i]; if(l.a===n)out.push(l.b); else if(l.b===n)out.push(l.a); } return out; }
+    function makeRoute(startNode){
+      if(!nodes.length)return;
+      var start=(startNode&&nodes.indexOf(startNode)>=0)?startNode:nodes[Math.floor(Math.random()*nodes.length)];
+      var hops=3+Math.floor(Math.random()*5), path=[start], cur=start;
+      for(var h=0;h<hops;h++){ var opts=neighbors(cur).filter(function(x){return path.indexOf(x)<0;}); if(!opts.length)break; cur=opts[Math.floor(Math.random()*opts.length)]; path.push(cur); }
+      route=path; routeStart=performance.now();
+      for(var k=0;k<path.length;k++) path[k].heat=1;
       attempts++; if(killEl)killEl.textContent=String(attempts).padStart(3,'0');
-      if(hintEl && attempts===1){ hintEl.textContent='e de novo ▸'; }
-      for(var i=0;i<16;i++){ var a=Math.random()*6.283,s=rnd(.6,3.4); bursts.push({x:n.x,y:n.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1}); }
-      var neigh=[]; links.forEach(function(l){ if(l.a===n)neigh.push(l.b); else if(l.b===n)neigh.push(l.a); });
-      links=links.filter(function(l){return l.a!==n&&l.b!==n;});
-      packets=packets.filter(function(p){return p.l.a!==n&&p.l.b!==n;});
-      nodes=nodes.filter(function(x){return x!==n;});
-      var g1=addNode(n.x+rnd(-26,26),n.y+rnd(-26,26)); g1.heat=1;
-      var g2=addNode(n.x+rnd(-26,26),n.y+rnd(-26,26)); g2.heat=1;
-      connect(g1,g2);
-      var pool=neigh.filter(function(x){return nodes.indexOf(x)>=0;});
-      if(!pool.length) pool=nearestK(n.x,n.y,3,g1);
-      pool.forEach(function(m){ if(Math.random()<.92)connect(g1,m); if(Math.random()<.68)connect(g2,m); });
-      if(!links.some(function(l){return l.a===g1||l.b===g1;})){ var a1=nearestK(g1.x,g1.y,1,g1)[0]; if(a1)connect(g1,a1); }
-      if(!links.some(function(l){return l.a===g2||l.b===g2;})){ var a2=nearestK(g2.x,g2.y,1,g2)[0]; if(a2)connect(g2,a2); }
-      while(nodes.length>CAP){ var old=nodes.shift(); links=links.filter(function(l){return l.a!==old&&l.b!==old;}); packets=packets.filter(function(p){return p.l.a!==old&&p.l.b!==old;}); }
-      flash('rota restabelecida em '+Math.round(rnd(18,90))+'ms');
+      if(hintEl && attempts===1){ hintEl.textContent='de novo ▸'; }
+      flash('rota anônima · '+(path.length-1)+' saltos cifrados');
     }
     function relax(){
       var i,j,a,b,dx,dy,d,d2;
@@ -794,15 +787,24 @@
       for(i=0;i<packets.length;i++){ var pk=packets[i]; a=pk.l.a; b=pk.l.b; if(!reduce)pk.p+=pk.sp; if(pk.p>1)pk.p-=1;
         var x=a.x+(b.x-a.x)*pk.p, y=a.y+(b.y-a.y)*pk.p;
         ctx.beginPath(); ctx.arc(x,y,1.7,0,6.283); ctx.fillStyle='rgba('+NEON+',0.85)'; ctx.fill(); }
-      for(i=bursts.length-1;i>=0;i--){ var bu=bursts[i]; if(!reduce){bu.x+=bu.vx;bu.y+=bu.vy;bu.vx*=0.92;bu.vy*=0.92;bu.life-=0.03;} else {bu.life-=0.2;}
-        if(bu.life<=0){bursts.splice(i,1);continue;} ctx.beginPath(); ctx.arc(bu.x,bu.y,1.6,0,6.283); ctx.fillStyle='rgba('+RED+','+bu.life.toFixed(2)+')'; ctx.fill(); }
+      if(route.length>1){
+        var rt=Math.min((performance.now()-routeStart)/ROUTE_LIFE,1);
+        if(rt>=1){ route=[]; }
+        else {
+          var fade=1-rt;
+          ctx.strokeStyle='rgba('+NEON+','+(0.9*fade).toFixed(3)+')'; ctx.lineWidth=2.2; ctx.beginPath(); ctx.moveTo(route[0].x,route[0].y);
+          for(i=1;i<route.length;i++) ctx.lineTo(route[i].x,route[i].y);
+          ctx.stroke();
+          var seg=(route.length-1)*rt, si=Math.floor(seg), sf=seg-si; if(si>route.length-2){si=route.length-2;sf=1;}
+          var ra=route[si], rb=route[si+1], px=ra.x+(rb.x-ra.x)*sf, py=ra.y+(rb.y-ra.y)*sf;
+          ctx.beginPath(); ctx.arc(px,py,8,0,6.283); ctx.fillStyle='rgba('+NEON+',0.18)'; ctx.fill();
+          ctx.beginPath(); ctx.arc(px,py,3.4,0,6.283); ctx.fillStyle='rgba('+NEON+',1)'; ctx.fill();
+        }
+      }
       for(i=0;i<nodes.length;i++){ var n=nodes[i]; var heat=n.heat>0?n.heat:0;
-        var rr=n.r+(n===hovered?2:0)+heat*2;
-        ctx.beginPath(); ctx.arc(n.x,n.y,rr+6,0,6.283); ctx.fillStyle='rgba('+NEON+',0.06)'; ctx.fill();
-        ctx.beginPath(); ctx.arc(n.x,n.y,rr,0,6.283);
-        if(heat>0){ ctx.fillStyle='rgba('+Math.round(255*heat)+','+Math.round(255*(1-heat)+136*heat)+','+Math.round(82*heat+136*(1-heat))+',1)'; }
-        else ctx.fillStyle='rgba('+NEON+',0.95)';
-        ctx.fill();
+        var rr=n.r+(n===hovered?2:0)+heat*2.2;
+        ctx.beginPath(); ctx.arc(n.x,n.y,rr+6,0,6.283); ctx.fillStyle='rgba('+NEON+','+(0.05+heat*0.13).toFixed(3)+')'; ctx.fill();
+        ctx.beginPath(); ctx.arc(n.x,n.y,rr,0,6.283); ctx.fillStyle='rgba('+NEON+','+(0.85+heat*0.15).toFixed(3)+')'; ctx.fill();
       }
       if(hovered){
         ctx.strokeStyle='rgba('+NEON+',0.5)'; ctx.lineWidth=1; ctx.setLineDash([3,4]);
@@ -820,14 +822,14 @@
     }
     function start(){ if(running)return; running=true; rafId=requestAnimationFrame(step); scheduleTease(); }
     function stop(){ running=false; if(rafId){cancelAnimationFrame(rafId);rafId=0;} if(W&&H&&nodes.length)draw(); }
-    function scheduleTease(){ if(teaseScheduled||reduce)return; teaseScheduled=true; setTimeout(function(){ if(!teased && !userActed && running && nodes.length){ teased=true; sever(nodes[Math.floor(Math.random()*nodes.length)]); } },3600); }
+    function scheduleTease(){ if(teaseScheduled||reduce)return; teaseScheduled=true; setTimeout(function(){ if(!teased && !userActed && running && nodes.length){ teased=true; makeRoute(); } },3600); }
 
     function pt(e){ var r=cv.getBoundingClientRect(); var cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left; var cy=(e.touches?e.touches[0].clientY:e.clientY)-r.top; return {x:cx,y:cy}; }
     function pick(x,y,rad){ var best=null,bd=rad*rad; for(var i=0;i<nodes.length;i++){ var n=nodes[i]; var d=(n.x-x)*(n.x-x)+(n.y-y)*(n.y-y); if(d<bd){bd=d;best=n;} } return best; }
     cv.addEventListener('mousemove',function(e){ var p=pt(e); hovered=pick(p.x,p.y,20); cv.style.cursor=hovered?'pointer':'crosshair'; if(reduce)draw(); });
     cv.addEventListener('mouseleave',function(){ hovered=null; });
-    cv.addEventListener('click',function(e){ userActed=true; var p=pt(e); var n=pick(p.x,p.y,24)||nodes[Math.floor(Math.random()*nodes.length)]; sever(n); if(reduce){relax();draw();} });
-    cv.addEventListener('touchstart',function(e){ var p=pt(e); var n=pick(p.x,p.y,30); if(n){ e.preventDefault(); userActed=true; sever(n); if(reduce){relax();draw();} } },{passive:false});
+    cv.addEventListener('click',function(e){ userActed=true; var p=pt(e); var n=pick(p.x,p.y,24); makeRoute(n); if(reduce){relax();draw();} });
+    cv.addEventListener('touchstart',function(e){ var p=pt(e); var n=pick(p.x,p.y,30); e.preventDefault(); userActed=true; makeRoute(n); if(reduce){relax();draw();} },{passive:false});
 
     window.addEventListener('resize',function(){ size(); relax(); draw(); },{passive:true});
 
