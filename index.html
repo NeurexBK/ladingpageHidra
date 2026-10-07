@@ -164,6 +164,23 @@
   .ex-flash{position:absolute;left:14px;bottom:44px;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--cyan);opacity:0;transition:opacity .3s;z-index:2;pointer-events:none;text-transform:uppercase}
   .ex-flash.on{opacity:1}
 
+  /* ===== Token $HNET ===== */
+  .tok{display:flex;align-items:center;justify-content:space-between;gap:20px 30px;flex-wrap:wrap;border:1px solid var(--line-2);border-radius:3px;background:radial-gradient(120% 170% at 0% 0%,rgba(0,255,136,.08),transparent 55%),var(--panel);padding:22px 26px}
+  .tok-l{display:flex;flex-direction:column;gap:5px}
+  .tok-tick{font-family:var(--disp);font-weight:700;font-size:1.55rem;letter-spacing:.01em;color:var(--neon);line-height:1}
+  .tok-sub{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .tok-r{display:flex;align-items:center;gap:14px;flex-wrap:wrap;flex:1 1 460px;min-width:0;justify-content:flex-end}
+  .tok-ca{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:3px;background:#070809;overflow:hidden;flex:1 1 320px;min-width:0;max-width:100%}
+  .tok-ca code{font-family:var(--mono);font-size:.8rem;color:var(--ink);padding:11px 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;line-height:1.4}
+  .tok-copy{flex-shrink:0;border:0;border-left:1px solid var(--line);background:var(--neon-soft);color:var(--neon);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:0 15px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+  .tok-copy:hover,.tok-copy.ok{background:var(--neon);color:#00160b}
+  .tok-copy svg{width:14px;height:14px}
+  .tok-links{display:flex;gap:8px;flex-wrap:wrap}
+  .tok-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--mut);border:1px solid var(--line-2);border-radius:3px;padding:9px 13px;transition:.2s;white-space:nowrap}
+  .tok-links a:hover{color:var(--neon);border-color:var(--neon-line);background:var(--neon-soft)}
+  .nav-mid a.nav-tok{color:var(--neon)}
+  .nav-mid a.nav-tok::after{background:var(--neon)}
+
   /* ===== Section shell ===== */
   .section{padding:clamp(64px,10vh,120px) 0}
   .s-head{max-width:760px;margin-bottom:52px}
@@ -344,6 +361,7 @@
       <a href="#apps">Aplicações</a>
       <a href="#quem">Para quem</a>
       <a href="#manifesto">Manifesto</a>
+      <a href="#token" class="nav-tok">$HNET</a>
     </nav>
     <div class="nav-cta">
       <a href="#download" class="btn btn-primary btn-sm">Baixar grátis</a>
@@ -390,6 +408,32 @@
               <span class="l">Rotas anônimas <b id="killCount">000</b></span>
               <span class="l">Seu IP: <b class="ex-never">OCULTO</b></span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOKEN $HNET ===== -->
+  <section class="section" id="token" style="padding-top:0">
+    <div class="wrap">
+      <div class="tok mark reveal">
+        <div class="tok-l">
+          <div class="tok-tick">$HNET</div>
+          <div class="tok-sub">Token da HidraNet · rede Solana</div>
+        </div>
+        <div class="tok-r">
+          <div class="tok-ca">
+            <code id="caText">Aov3BtQvrGXM5V9oiHu8PKJWeV8a2rFnr24fwWcNpump</code>
+            <button class="tok-copy" id="caCopy" type="button" aria-label="Copiar o endereço do contrato $HNET">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="caCopyLabel">copiar</span>
+            </button>
+          </div>
+          <div class="tok-links">
+            <a class="tok-link" data-ex="pump" href="#" target="_blank" rel="noopener noreferrer">pump.fun ↗</a>
+            <a class="tok-link" data-ex="dex" href="#" target="_blank" rel="noopener noreferrer">DexScreener ↗</a>
+            <a class="tok-link" data-ex="scan" href="#" target="_blank" rel="noopener noreferrer">Solscan ↗</a>
           </div>
         </div>
       </div>
@@ -622,6 +666,7 @@
       <div class="foot-col">
         <h5>Obter</h5>
         <a href="#download">Download</a>
+        <a href="#token">Token $HNET</a>
         <a href="https://github.com/NeurexBK/HidraNet/releases" target="_blank" rel="noopener noreferrer">Releases</a>
         <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer">Código-fonte</a>
       </div>
@@ -713,6 +758,20 @@
     }
     show(target());
     setInterval(function(){ var t=target(); if(t!==current) show(t); },15000);
+  })();
+
+  /* ===== Token $HNET: copiar CA + montar links ===== */
+  (function(){
+    var ca=document.getElementById('caText'); if(!ca) return;
+    var CA=ca.textContent.trim();
+    var bases={pump:'https://pump.fun/coin/',dex:'https://dexscreener.com/solana/',scan:'https://solscan.io/token/'};
+    document.querySelectorAll('.tok-link').forEach(function(a){ var b=bases[a.getAttribute('data-ex')]; if(b) a.href=b+CA; });
+    var btn=document.getElementById('caCopy'), lbl=document.getElementById('caCopyLabel'); if(!btn) return;
+    btn.addEventListener('click',function(){
+      var done=function(){ btn.classList.add('ok'); if(lbl)lbl.textContent='copiado'; setTimeout(function(){ btn.classList.remove('ok'); if(lbl)lbl.textContent='copiar'; },1600); };
+      var fb=function(){ try{ var t=document.createElement('textarea'); t.value=CA; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.focus(); t.select(); document.execCommand('copy'); document.body.removeChild(t); done(); }catch(e){} };
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(CA).then(done).catch(fb); } else { fb(); }
+    });
   })();
 
   /* ===== HERO: interactive Hydra mesh ===== */
