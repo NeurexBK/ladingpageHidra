@@ -181,6 +181,15 @@
   .nav-mid a.nav-tok{color:var(--neon)}
   .nav-mid a.nav-tok::after{background:var(--neon)}
 
+  /* ===== Whitepaper ===== */
+  .wp{display:flex;align-items:center;justify-content:space-between;gap:20px 30px;flex-wrap:wrap;border:1px solid var(--line-2);border-radius:3px;background:radial-gradient(130% 180% at 100% 0%,rgba(0,217,255,.08),transparent 55%),var(--panel);padding:24px 26px}
+  .wp-l{display:flex;align-items:center;gap:18px;min-width:0}
+  .wp-ic{width:40px;height:40px;flex-shrink:0;color:var(--cyan)}
+  .wp-ic svg{width:100%;height:100%}
+  .wp-title{font-family:var(--disp);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;line-height:1.05}
+  .wp-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:7px}
+  .wp-actions{display:flex;gap:10px;flex-wrap:wrap}
+
   /* ===== Section shell ===== */
   .section{padding:clamp(64px,10vh,120px) 0}
   .s-head{max-width:760px;margin-bottom:52px}
@@ -361,6 +370,7 @@
       <a href="#apps">Apps</a>
       <a href="#quem">Who it's for</a>
       <a href="#manifesto">Manifesto</a>
+      <a href="#whitepaper">Whitepaper</a>
       <a href="#token" class="nav-tok">$HNET</a>
     </nav>
     <div class="nav-cta">
@@ -434,7 +444,30 @@
             <a class="tok-link" data-ex="pump" href="#" target="_blank" rel="noopener noreferrer">pump.fun ↗</a>
             <a class="tok-link" data-ex="dex" href="#" target="_blank" rel="noopener noreferrer">DexScreener ↗</a>
             <a class="tok-link" data-ex="scan" href="#" target="_blank" rel="noopener noreferrer">Solscan ↗</a>
+            <a class="tok-link" href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">Whitepaper ↗</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHITEPAPER ===== -->
+  <section class="section" id="whitepaper" style="padding-top:0">
+    <div class="wrap">
+      <div class="wp mark reveal">
+        <div class="wp-l">
+          <span class="wp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
+          <div>
+            <div class="wp-title">Whitepaper</div>
+            <div class="wp-sub">HidraNet &amp; $HNET — full project overview · EN · v1.1 · PDF</div>
+          </div>
+        </div>
+        <div class="wp-actions">
+          <a class="btn btn-primary btn-sm" href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Read the whitepaper
+          </a>
+          <a class="btn btn-ghost btn-sm" href="/HNET-Whitepaper-EN-v1.1.pdf" download>Download PDF</a>
         </div>
       </div>
     </div>
@@ -667,6 +700,7 @@
         <h5>Get</h5>
         <a href="#download">Download</a>
         <a href="#token">$HNET token</a>
+        <a href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">Whitepaper (PDF)</a>
         <a href="https://github.com/NeurexBK/HidraNet/releases" target="_blank" rel="noopener noreferrer">Releases</a>
         <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer">Source code</a>
       </div>
