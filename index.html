@@ -182,6 +182,21 @@
   .wp-title{font-family:var(--disp);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;line-height:1.05}
   .wp-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:7px}
   .wp-actions{display:flex;gap:10px;flex-wrap:wrap}
+  /* ===== Docs list ===== */
+  .doclist{border:1px solid var(--line);background:var(--panel)}
+  .docrow{display:flex;align-items:center;gap:18px;padding:20px 26px;border-top:1px solid var(--line);transition:background .2s;color:inherit}
+  .docrow:first-child{border-top:0}
+  .docrow:hover{background:var(--panel-2)}
+  .docrow .di{width:26px;height:26px;color:var(--cyan);flex-shrink:0}
+  .docrow .di svg{width:100%;height:100%}
+  .docrow .dm{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+  .docrow .dt{font-family:var(--disp);font-weight:600;font-size:1.12rem;letter-spacing:-.01em}
+  .docrow .dd{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+  .docrow .dgo{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--mut);white-space:nowrap}
+  .docrow:hover .dt,.docrow:hover .dgo,.docrow:hover .di{color:var(--neon)}
+  .foot-legal{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.76rem;letter-spacing:.04em}
+  .foot-legal a{color:var(--mut)}
+  .foot-legal a:hover{color:var(--neon)}
 
   /* ===== Section shell ===== */
   .section{padding:clamp(64px,10vh,120px) 0}
@@ -363,7 +378,7 @@
       <a href="#apps">Apps</a>
       <a href="#quem">Who it's for</a>
       <a href="#manifesto">Manifesto</a>
-      <a href="#whitepaper">Whitepaper</a>
+      <a href="#docs">Docs</a>
       <a href="#token" class="nav-tok">$HNET</a>
     </nav>
     <div class="nav-cta">
@@ -444,24 +459,40 @@
     </div>
   </section>
 
-  <!-- ===== WHITEPAPER ===== -->
-  <section class="section" id="whitepaper" style="padding-top:0">
+  <!-- ===== DOCS ===== -->
+  <section class="section" id="docs" style="padding-top:0">
     <div class="wrap">
-      <div class="wp mark">
-        <div class="wp-l">
-          <span class="wp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
-          <div>
-            <div class="wp-title">Whitepaper</div>
-            <div class="wp-sub">HidraNet &amp; $HNET — full project overview · EN · v1.1 · PDF</div>
-          </div>
-        </div>
-        <div class="wp-actions">
-          <a class="btn btn-primary btn-sm" href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Read the whitepaper
-          </a>
-          <a class="btn btn-ghost btn-sm" href="/HNET-Whitepaper-EN-v1.1.pdf" download>Download PDF</a>
-        </div>
+      <div class="s-head">
+        <span class="eyebrow">// Documentation</span>
+        <h2 class="title">Read the docs.</h2>
+        <p class="lead">Everything about HidraNet — the network, the token, how to use it, and the legal terms. Open any document as a PDF.</p>
+      </div>
+      <div class="doclist mark">
+        <a class="docrow" href="/HidraNet-Technical-Whitepaper-v2.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <span class="dm"><span class="dt">Technical Whitepaper</span><span class="dd">Architecture &amp; cryptography · v2.0 · PDF</span></span>
+          <span class="dgo">Open ↗</span>
+        </a>
+        <a class="docrow" href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M14.5 9.3c-.6-.8-1.5-1.3-2.5-1.3-1.4 0-2.5.9-2.5 2s1.1 1.6 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2c-1 0-1.9-.5-2.5-1.3"/></svg></span>
+          <span class="dm"><span class="dt">$HNET Token Whitepaper</span><span class="dd">The HNET token on Solana · v1.1 · PDF</span></span>
+          <span class="dgo">Open ↗</span>
+        </a>
+        <a class="docrow" href="/HidraNet-User-Guide.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+          <span class="dm"><span class="dt">User Guide</span><span class="dd">How to use the browser &amp; apps · v1.1 · PDF</span></span>
+          <span class="dgo">Open ↗</span>
+        </a>
+        <a class="docrow" href="/HidraNet-Privacy-Policy.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="dm"><span class="dt">Privacy Policy</span><span class="dd">What HidraNet knows about you · v1.0 · PDF</span></span>
+          <span class="dgo">Open ↗</span>
+        </a>
+        <a class="docrow" href="/HidraNet-Terms-of-Use.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg></span>
+          <span class="dm"><span class="dt">Terms of Use</span><span class="dd">The rules for using HidraNet · v1.0 · PDF</span></span>
+          <span class="dgo">Open ↗</span>
+        </a>
       </div>
     </div>
   </section>
@@ -693,7 +724,7 @@
         <h5>Get</h5>
         <a href="#download">Download</a>
         <a href="#token">$HNET token</a>
-        <a href="/HNET-Whitepaper-EN-v1.1.pdf" target="_blank" rel="noopener noreferrer">Whitepaper (PDF)</a>
+        <a href="#docs">Docs &amp; whitepaper</a>
         <a href="https://github.com/NeurexBK/HidraNet/releases" target="_blank" rel="noopener noreferrer">Releases</a>
         <a href="https://github.com/NeurexBK/HidraNet" target="_blank" rel="noopener noreferrer">Source code</a>
       </div>
@@ -705,6 +736,10 @@
     </div>
     <div class="foot-bottom">
       <div class="cp">© 2026 HIDRANET — NO TRACKERS · NO COOKIES · NO ACCOUNTS</div>
+      <div class="foot-legal">
+        <a href="/HidraNet-Privacy-Policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="/HidraNet-Terms-of-Use.pdf" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+      </div>
       <div class="socials">
         <a href="https://x.com/HidraNetoff" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
