@@ -646,7 +646,7 @@
         <div class="dl-live" aria-live="polite" aria-label="Live downloads">
           <span class="d" aria-hidden="true"></span>
           <span class="num" id="dlCount">—</span>
-          <span class="lab">downloads and climbing</span>
+          <span class="lab">downloads</span>
         </div>
       </div>
       <div class="grid-dl mark reveal">
@@ -805,19 +805,34 @@
     b.addEventListener('click',function(){toast(b.getAttribute('data-download'));});
   });
 
-  /* ===== Download counter (nós implantados) ===== */
+  /* ===== Download counter — real total (no fake growth) ===== */
   (function(){
     var el=document.getElementById('dlCount'); if(!el) return;
-    var BASE=0, EPOCH=1789387990508, STEP=1800000; /* +1 a cada 30 min */
-    function target(){ var d=Date.now()-EPOCH; return BASE + (d>0?Math.floor(d/STEP):0); }
-    var shown=false, current=0;
-    function show(t){
-      if(reduce){ el.textContent=t.toLocaleString('pt-BR'); current=t; shown=true; return; }
-      var start=shown?current:0, t0=performance.now(), dur=shown?700:1300; shown=true; current=t;
-      (function tick(now){ var p=Math.min((now-t0)/dur,1), v=Math.round(start+(t-start)*(1-Math.pow(1-p,3))); el.textContent=v.toLocaleString('pt-BR'); if(p<1) requestAnimationFrame(tick); })(t0);
-    }
-    show(target());
-    setInterval(function(){ var t=target(); if(t!==current) show(t); },15000);
+    var BASE=205;
+    function render(n){ el.textContent=(typeof n==='number'&&isFinite(n)?n:BASE).toLocaleString('en-US'); }
+    render(BASE);
+    /* If a live counter backend is present (/api/downloads), use the real shared count. */
+    try{
+      fetch('/api/downloads',{headers:{'Accept':'application/json'}})
+        .then(function(r){ return r.ok?r.json():null; })
+        .then(function(d){ if(d&&typeof d.count==='number') render(d.count); })
+        .catch(function(){});
+    }catch(e){}
+    /* Count a real download once per browser. */
+    var KEY='hidra_dl_counted';
+    function alreadyCounted(){ try{ return localStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+    document.querySelectorAll('[data-download]').forEach(function(b){
+      b.addEventListener('click',function(){
+        if(alreadyCounted()) return;
+        try{ localStorage.setItem(KEY,'1'); }catch(e){}
+        try{
+          fetch('/api/downloads',{method:'POST',keepalive:true,headers:{'Accept':'application/json'}})
+            .then(function(r){ return r.ok?r.json():null; })
+            .then(function(d){ if(d&&typeof d.count==='number') render(d.count); })
+            .catch(function(){});
+        }catch(e){}
+      });
+    });
   })();
 
   /* ===== Token $HNET: copiar CA + montar links ===== */
