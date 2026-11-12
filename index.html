@@ -375,6 +375,7 @@
     <nav class="nav-mid" id="navMid">
       <a href="#protocolo">Protocol</a>
       <a href="#apps">Apps</a>
+      <a href="#vpn">VPN</a>
       <a href="#quem">Who it's for</a>
       <a href="#manifesto">Manifesto</a>
       <a href="#docs">Docs</a>
@@ -577,6 +578,53 @@
       <p class="apps-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Five native apps — zero accounts, zero trackers.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== HIDRAVPN ===== -->
+  <section class="section" id="vpn" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="eyebrow">// HidraVPN · whole machine</span>
+        <h2 class="title">The browser isn't<br>the whole machine.</h2>
+        <p class="lead">HidraBrowser protects what happens in the browser. <b style="color:var(--ink)">HidraVPN</b> protects everything else — a WireGuard VPN, run as a background service through nodes operated by different people, with a kill switch on by default. Open source, in beta.</p>
+      </div>
+      <div class="sheet mark">
+        <div class="spec">
+          <div class="idx">/01</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>One hop or two</div>
+          <div class="ds">A single fast hop, or two independent hops nested tunnel-in-a-tunnel: the entry sees your address but not where you go; the exit sees where you go but not your address.</div>
+        </div>
+        <div class="spec">
+          <div class="idx">/02</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Kill switch, on by default</div>
+          <div class="ds">If the tunnel drops, your traffic stops — nothing leaks, not even between circuits. IPv6 is blocked and DNS is pinned to the node.</div>
+        </div>
+        <div class="spec">
+          <div class="idx">/03</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M11.5 11.5 21 2"/><path d="M15.5 7.5 18 10"/></svg>A different key per node</div>
+          <div class="ds">Each node sees a key derived only for it. No operator holds the master key, and two of them comparing notes find nothing in common.</div>
+        </div>
+        <div class="spec">
+          <div class="idx">/04</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M6 7l4.5 3.5M18 7l-4.5 3.5M6 17l4.5-3.5M18 17l-4.5-3.5"/></svg>Run by independent operators</div>
+          <div class="ds">Nodes come from an <span class="hi">Ed25519-signed</span> list the client verifies before trusting any of them. Open admission — a stranger connects on the first try.</div>
+        </div>
+        <div class="spec">
+          <div class="idx">/05</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>Nothing recorded</div>
+          <div class="ds">No node logs your address, your lookups or a byte of traffic — the network test suites grep every log to prove it.</div>
+        </div>
+        <div class="spec">
+          <div class="idx">/06</div>
+          <div class="nm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>Honest by design</div>
+          <div class="ds">Strong privacy, not anonymity — for anonymity, that's what the browser's Tor is for. <span class="hi">11.5k</span> lines of Rust, <span class="hi">250</span> checks on real tunnels.</div>
+        </div>
+      </div>
+      <p class="apps-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        In beta · open source. Read exactly how it works — and what it doesn't do yet — in the <a href="/HidraNet-Technical-Whitepaper-v2.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--neon)">whitepaper</a>.
       </p>
     </div>
   </section>
