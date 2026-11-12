@@ -258,10 +258,6 @@
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
   /* ===== Download ===== */
-  .dl-live{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:12px 20px;border:1px solid var(--neon-line);background:var(--neon-soft);border-radius:2px;font-family:var(--mono)}
-  .dl-live .d{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon);animation:pulse 1.4s ease-in-out infinite}
-  .dl-live .num{font-size:1.24rem;font-weight:700;color:var(--neon);line-height:1}
-  .dl-live .lab{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
   .grid-dl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--panel);margin-top:8px}
   .dl{display:flex;flex-direction:column;padding:30px 26px;border-right:1px solid var(--line);transition:background .25s}
   .dl:last-child{border-right:0}
@@ -700,11 +696,6 @@
         <span class="eyebrow">04 // Download</span>
         <h2 class="title">Download. Go<br>invisible.</h2>
         <p class="lead">Free and no signup. Pick your system and the download starts instantly.</p>
-        <div class="dl-live" aria-live="polite" aria-label="Live downloads">
-          <span class="d" aria-hidden="true"></span>
-          <span class="num" id="dlCount">—</span>
-          <span class="lab">downloads</span>
-        </div>
       </div>
       <div class="grid-dl mark reveal">
         <article class="dl">
@@ -861,36 +852,6 @@
   document.querySelectorAll('[data-download]').forEach(function(b){
     b.addEventListener('click',function(){toast(b.getAttribute('data-download'));});
   });
-
-  /* ===== Download counter — real total (no fake growth) ===== */
-  (function(){
-    var el=document.getElementById('dlCount'); if(!el) return;
-    var BASE=205;
-    function render(n){ el.textContent=(typeof n==='number'&&isFinite(n)?n:BASE).toLocaleString('en-US'); }
-    render(BASE);
-    /* If a live counter backend is present (/api/downloads), use the real shared count. */
-    try{
-      fetch('/api/downloads',{headers:{'Accept':'application/json'}})
-        .then(function(r){ return r.ok?r.json():null; })
-        .then(function(d){ if(d&&typeof d.count==='number') render(d.count); })
-        .catch(function(){});
-    }catch(e){}
-    /* Count a real download once per browser. */
-    var KEY='hidra_dl_counted';
-    function alreadyCounted(){ try{ return localStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
-    document.querySelectorAll('[data-download]').forEach(function(b){
-      b.addEventListener('click',function(){
-        if(alreadyCounted()) return;
-        try{ localStorage.setItem(KEY,'1'); }catch(e){}
-        try{
-          fetch('/api/downloads',{method:'POST',keepalive:true,headers:{'Accept':'application/json'}})
-            .then(function(r){ return r.ok?r.json():null; })
-            .then(function(d){ if(d&&typeof d.count==='number') render(d.count); })
-            .catch(function(){});
-        }catch(e){}
-      });
-    });
-  })();
 
   /* ===== Token $HNET: copiar CA + montar links ===== */
   (function(){
