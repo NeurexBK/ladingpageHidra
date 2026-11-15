@@ -182,6 +182,24 @@
   .wp-title{font-family:var(--disp);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;line-height:1.05}
   .wp-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:7px}
   .wp-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ===== Launch ribbon + section ordering (HidraVPN to top) ===== */
+  main{display:flex;flex-direction:column}
+  .hero{order:-2}
+  #vpn{order:-1}
+  .launchbar{display:block;background:linear-gradient(90deg,var(--neon-soft),rgba(0,217,255,.05));border-bottom:1px solid var(--neon-line);text-decoration:none;color:var(--ink)}
+  .launchbar .lb-in{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px;font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;text-align:center}
+  .launchbar .lb-tag{color:var(--neon);font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+  .launchbar b{color:var(--neon);font-weight:700}
+  .launchbar .lb-sep{color:var(--mut)}
+  .launchbar .lb-go{color:var(--neon);white-space:nowrap;border-bottom:1px solid transparent;transition:border-color .2s}
+  .launchbar:hover .lb-go{border-bottom-color:var(--neon)}
+  @media(max-width:620px){.launchbar .lb-sep{display:none}.launchbar .lb-in{font-size:.71rem;gap:7px}}
+  .vpn-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .vpn-facts .f{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.76rem;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);border:1px solid var(--neon-line);background:var(--neon-soft);padding:9px 14px;border-radius:2px}
+  .vpn-facts .f svg{width:14px;height:14px;color:var(--neon);flex-shrink:0}
+  .vpn-facts .f.cy{border-color:rgba(0,217,255,.24);background:var(--cyan-soft)}
+  .vpn-facts .f.cy svg{color:var(--cyan)}
   /* ===== Docs list ===== */
   .doclist{border:1px solid var(--line);background:var(--panel)}
   .docrow{display:flex;align-items:center;gap:18px;padding:20px 26px;border-top:1px solid var(--line);transition:background .2s;color:inherit}
@@ -361,6 +379,16 @@
   </div>
 </div>
 
+<!-- ===== LAUNCH RIBBON ===== -->
+<a class="launchbar" href="#vpn" aria-label="HidraVPN is live — launched October 12, 2026">
+  <span class="lb-in wrap">
+    <span class="lb-tag">◆ HidraVPN is here</span>
+    <span class="lb-sep">·</span>
+    <span>Launched October 12 — an accessible price, and <b>no card, no email, no data</b> to start</span>
+    <span class="lb-go">Get HidraVPN ↗</span>
+  </span>
+</a>
+
 <!-- ===== HEADER ===== -->
 <header id="header">
   <div class="wrap nav">
@@ -369,9 +397,9 @@
       <span class="wm">HIDRA<span class="n">NET</span></span>
     </a>
     <nav class="nav-mid" id="navMid">
+      <a href="#vpn" class="nav-vpn">VPN</a>
       <a href="#protocolo">Protocol</a>
       <a href="#apps">Apps</a>
-      <a href="#vpn">VPN</a>
       <a href="#quem">Who it's for</a>
       <a href="#manifesto">Manifesto</a>
       <a href="#docs">Docs</a>
@@ -582,9 +610,14 @@
   <section class="section" id="vpn" style="padding-top:0">
     <div class="wrap">
       <div class="s-head">
-        <span class="eyebrow">// New · HidraVPN is live</span>
+        <span class="eyebrow">// HidraVPN · launched October 12</span>
         <h2 class="title">The browser isn't<br>the whole machine.</h2>
-        <p class="lead">HidraBrowser protects what happens in the browser. <b style="color:var(--ink)">HidraVPN</b> protects everything else — a WireGuard VPN, run as a background service through nodes operated by different people, with a kill switch on by default. Open source — now live.</p>
+        <p class="lead">HidraBrowser protects what happens in the browser. <b style="color:var(--ink)">HidraVPN</b> protects everything else — a WireGuard VPN with a kill switch on by default, run through nodes operated by different people. An accessible price, and nothing asked of you to start: <b style="color:var(--ink)">no card, no email, no personal data.</b></p>
+        <div class="vpn-facts">
+          <span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>Launched Oct 12, 2026</span>
+          <span class="f cy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="3" y1="3" x2="21" y2="21"/></svg>No card · no email · no data</span>
+          <span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>An accessible price</span>
+        </div>
       </div>
       <div class="sheet mark">
         <div class="spec">
